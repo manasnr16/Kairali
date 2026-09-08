@@ -56,13 +56,13 @@ const HowItWorks = () => {
     <div className="py-16  overflow-x-hidden">
       <h4
         data-aos="fade-down"
-        className="text-lg text-[#b98c5e] tracking-widest subtitle-font font-semibold text-center"
+        className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold text-center"
       >
         moments
       </h4>
       <h2
         data-aos="fade-up"
-        className="text-center text-3xl sm:text-4xl font-bold subtitle-font text-[#4e2f1f] mt-2"
+        className="text-center text-3xl sm:text-4xl font-bold subtitle-font text-[#2B211C] mt-2"
       >
         How it works
       </h2>
@@ -74,7 +74,7 @@ const HowItWorks = () => {
       />
 
       <div className="relative w-full max-w-4xl mx-auto">
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-rose-600" />
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-maroon" />
 
         {steps.map((step, index) => (
           <div
@@ -85,7 +85,7 @@ const HowItWorks = () => {
             }`}
           >
             <div className="w-1/2 px-4">
-              <div className="bg-blue-50 p-3 md:p-6 rounded-lg shadow-md">
+              <div className="bg-sand p-3 md:p-6 rounded-lg shadow-md">
                 <h3 className="text-[14px] md:text-xl subtitle-font font-bold mb-2">
                   {step.title}
                 </h3>
@@ -96,7 +96,7 @@ const HowItWorks = () => {
             </div>
 
             {/* Center Dot */}
-            <div className="relative z-10 w-8 h-8 bg-rose-600 border-4 border-white rounded-full shadow-md" />
+            <div className="relative z-10 w-8 h-8 bg-maroon border-4 border-white rounded-full shadow-md" />
 
             <div className="w-1/2 flex justify-center px-4">
               <img

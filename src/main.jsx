@@ -8,21 +8,17 @@ import { router } from './Routers/Router';
 // ✅ TanStack Query Client
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// ✅ Stripe
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+// Stripe is intentionally not wired up right now (payment is skipped during
+// dev — see CheckoutPage.jsx). Re-add the Elements/loadStripe wrapper here
+// once a real VITE_PYMENT_PUB_KEY is available.
 
-// ✅ Query Client & Stripe Key
 const queryClient = new QueryClient();
-const stripePromise = loadStripe(import.meta.env.VITE_PYMENT_PUB_KEY); 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Elements stripe={stripePromise}>
-          <RouterProvider router={router} />
-        </Elements>
+        <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

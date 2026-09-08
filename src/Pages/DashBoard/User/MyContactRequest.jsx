@@ -53,7 +53,7 @@ const MyContactRequest = () => {
           {/* Table for md and up */}
           <div className="hidden md:block overflow-x-auto bg-white shadow rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-green-600 text-white">
+              <thead className="bg-maroon text-white">
                 <tr className="text-center">
                   <th className="px-2 py-3 text-sm font-semibold">Name</th>
                   <th className="px-2 py-3 text-sm font-semibold">Biodata ID</th>

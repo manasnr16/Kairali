@@ -41,7 +41,7 @@ const HeroSlider = () => {
             #1 Matrimony Service
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold subtitle-font break-words">
-            Meet Your <span className="text-rose-600">Life Partner</span>
+            Meet Your <span className="text-maroon">Life Partner</span>
           </h1>
           <p className="mt-2 text-sm w-10/12 mx-auto md:text-lg poppins">
             Trusted by thousands for meaningful and lifelong relationships.
@@ -49,7 +49,7 @@ const HeroSlider = () => {
         </div>
 
         {/* Search Form */}
-        <div className="bg-gradient-to-r from-pink-100 to-rose-200 bg-opacity-10 p-6 md:p-5 rounded-lg w-full max-w-5xl mx-4">
+        <div className="bg-gradient-to-r from-cream to-sand bg-opacity-10 p-6 md:p-5 rounded-lg w-full max-w-5xl mx-4">
           <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 w-full">
             <select className="px-3 py-2 rounded text-black w-full">
               <option>I'm looking for</option>
@@ -77,7 +77,7 @@ const HeroSlider = () => {
               <option>Khulna</option>
             </select>
             <Link to="/biodataspage">
-              <button className="bg-rose-600 hover:bg-rose-700 py-2 text-white font-semibold rounded w-full">
+              <button className="bg-maroon hover:bg-maroon-dark py-2 text-white font-semibold rounded w-full">
                 Search
               </button>
             </Link>

@@ -31,10 +31,10 @@ const PremiumMembers = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <div>
-            <h4 className="text-[#b98c5e] text-lg subtitle-font font-bold text-center md:text-start">
+            <h4 className="text-[#A67C2E] text-lg subtitle-font font-bold text-center md:text-start">
               Quick Access
             </h4>
-            <h2 className="text-3xl lg:text-4xl text-[#66451C] text-center md:text-start font-bold subtitle-font">
+            <h2 className="text-3xl lg:text-4xl text-[#A67C2E] text-center md:text-start font-bold subtitle-font">
               Premium Members
             </h2>
           </div>
@@ -43,7 +43,7 @@ const PremiumMembers = () => {
           <select
             onChange={(e) => setSortOrder(e.target.value)}
             value={sortOrder}
-            className="border border-[#66451C] rounded px-3 py-1 mt-10 md:mt-0 w-[230px]"
+            className="border border-[#A67C2E] rounded px-3 py-1 mt-10 md:mt-0 w-[230px]"
           >
             <option value="asc">Sort by Age: Ascending</option>
             <option value="desc">Sort by Age: Descending</option>

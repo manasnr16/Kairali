@@ -87,7 +87,7 @@ const ManageUsers = () => {
         </select>
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-maroon text-white px-4 py-2 rounded hover:bg-maroon-dark"
         >
           Search
         </button>
@@ -96,7 +96,7 @@ const ManageUsers = () => {
       {/* Table for md and up */}
       <div className="hidden md:block overflow-x-auto bg-white shadow rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-green-600 text-white">
+          <thead className="bg-maroon text-white">
             <tr className="text-center">
               <th className="px-2 py-3 text-sm font-semibold">Name</th>
               <th className="px-2 py-3 text-sm font-semibold">Email</th>
@@ -122,7 +122,7 @@ const ManageUsers = () => {
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user.email)}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs"
+                        className="bg-maroon hover:bg-maroon-dark text-white px-3 py-1 rounded text-xs"
                       >
                         Make Admin
                       </button>
@@ -132,7 +132,7 @@ const ManageUsers = () => {
                     {user.premiumRequest ? (
                       <button
                         onClick={() => handleMakePremium(user.email)}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs"
+                        className="bg-gold hover:bg-gold-dark text-white px-3 py-1 rounded text-xs"
                       >
                         Make Premium
                       </button>
@@ -168,7 +168,7 @@ const ManageUsers = () => {
               ) : (
                 <button
                   onClick={() => handleMakeAdmin(user.email)}
-                  className="my-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-sm"
+                  className="my-2 bg-maroon hover:bg-maroon-dark text-white px-3 py-2 rounded text-sm"
                 >
                   Make Admin
                 </button>
@@ -179,7 +179,7 @@ const ManageUsers = () => {
               {user.premiumRequest ? (
                 <button
                   onClick={() => handleMakePremium(user.email)}
-                  className="my-2 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded text-sm"
+                  className="my-2 bg-gold hover:bg-gold-dark text-white px-3 py-2 rounded text-sm"
                 >
                   Make Premium
                 </button>

@@ -15,7 +15,7 @@ const Contact = () => {
       icon: "success",
       title: "Message Sent!",
       text: "Thank you for contacting us. We'll get back to you soon.",
-      confirmButtonColor: "#d63384", // pink
+      confirmButtonColor: "#7A1F2B", // maroon
     });
 
     // Reset form
@@ -26,7 +26,7 @@ const Contact = () => {
   return (
     <section className=" py-32 px-4 min-h-[70vh]" id="contact">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-10">Contact Us</h2>
+        <h2 className="text-4xl font-bold text-center text-ink mb-10">Contact Us</h2>
         <form
           onSubmit={handleSubmit}
           className="p-8 grid gap-6"
@@ -60,7 +60,7 @@ const Contact = () => {
           ></textarea>
           <button
             type="submit"
-            className="bg-pink-600 text-white py-3 rounded hover:bg-pink-700 transition duration-300"
+            className="bg-maroon text-white py-3 rounded hover:bg-maroon-dark transition duration-300"
           >
             Send Message
           </button>

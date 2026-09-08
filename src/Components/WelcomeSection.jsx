@@ -29,14 +29,14 @@ const WelcomeSection = () => {
           <img
             src="/img2.png"
             alt="Couple 2"
-            className="absolute bottom-[-20px] left-[30px] md:left-[50px] w-11/12 h-3/4 object-cover rounded-xl border-5 border-pink-200 shadow-xl"
+            className="absolute bottom-[-20px] left-[30px] md:left-[50px] w-11/12 h-3/4 object-cover rounded-xl border-5 border-gold shadow-xl"
           />
         </div>
 
         {/* Text Section */}
         <div className="w-full lg:w-1/2 text-start md:text-left">
-          <h2 className="text-4xl font-bold text-[#66451C] mb-2 subtitle-font">WELCOME TO</h2>
-          <h3 className="text-3xl text-rose-600 font-semibold mb-4 subtitle-font">
+          <h2 className="text-4xl font-bold text-[#A67C2E] mb-2 subtitle-font">WELCOME TO</h2>
+          <h3 className="text-3xl text-maroon font-semibold mb-4 subtitle-font">
             WEDDING MATRIMONY
           </h3>
           <p className="text-gray-600 mb-3 poppins">
@@ -44,7 +44,7 @@ const WelcomeSection = () => {
             <br />
             <Link to="/loginpage">
               Start your matrimonial journey today  
-              <span className="text-pink-600 font-medium underline cursor-pointer poppins mx-1">
+              <span className="text-maroon font-medium underline cursor-pointer poppins mx-1">
                 click here
               </span>
             </Link>{" "}
@@ -58,13 +58,13 @@ const WelcomeSection = () => {
           {/* Contact Info */}
           <div className="flex gap-10 flex-col md:flex-row justify-center md:justify-start mt-6">
             <div className="flex items-center gap-2">
-              <div className="bg-black text-white p-2 rounded-full">
+              <div className="bg-ink text-white p-2 rounded-full">
                 <FaPhoneAlt />
               </div>
               <span>+0123456789</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-black text-white p-2 rounded-full">
+              <div className="bg-ink text-white p-2 rounded-full">
                 <MdEmail />
               </div>
               <span>info@example.com</span>
@@ -80,7 +80,7 @@ const WelcomeSection = () => {
       >
         <div className="text-xl border md:border-l-0 p-6">
           <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaHeart className="text-pink-500" size={30} />
+            <FaHeart className="text-maroon" size={30} />
             <span className="subtitle-font text-2xl">
               {inView && !loading && <CountUp end={stats.marriageCount} duration={2} suffix="+" />}
             </span>
@@ -90,7 +90,7 @@ const WelcomeSection = () => {
 
         <div className="text-xl border md:border-l-0 p-6">
           <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaUsers className="text-yellow-600" size={30} />
+            <FaUsers className="text-gold-dark" size={30} />
             <span className="subtitle-font text-2xl">
               {inView && !loading && <CountUp end={stats.totalBiodata} duration={2.5} suffix="+" />}
             </span>
@@ -100,7 +100,7 @@ const WelcomeSection = () => {
 
         <div className="text-xl border md:border-l-0 p-6">
           <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaMale className="text-blue-500" size={30} />
+            <FaMale className="text-forest" size={30} />
             <span className="subtitle-font text-2xl">
               {inView && !loading && <CountUp end={stats.maleBiodata} duration={2} suffix="+" />}
             </span>
@@ -110,7 +110,7 @@ const WelcomeSection = () => {
 
         <div className="text-xl border md:border-l-0 md:border-r-0 p-6">
           <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaFemale className="text-pink-400" size={30} />
+            <FaFemale className="text-gold" size={30} />
             <span className="subtitle-font text-2xl">
               {inView && !loading && <CountUp end={stats.femaleBiodata} duration={2} suffix="+" />}
             </span>

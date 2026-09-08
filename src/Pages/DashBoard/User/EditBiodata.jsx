@@ -84,7 +84,7 @@ const EditBiodata = () => {
           icon: 'success',
           title: 'Success!',
           text: isEditing ? 'Biodata updated successfully.' : 'Biodata submitted successfully.',
-          confirmButtonColor: '#3085d6',
+          confirmButtonColor: '#7A1F2B',
           confirmButtonText: 'OK',
         });
       }
@@ -100,7 +100,7 @@ const EditBiodata = () => {
 
   return (
     <div className="px-4 sm:px-6 md:px-8 py-10">
-      <h2 className="text-3xl font-semibold mb-12 text-center text-gray-800">
+      <h2 className="text-3xl font-semibold mb-12 text-center text-ink">
         {isEditing ? 'Edit Your Biodata' : 'Create Your Biodata'}
       </h2>
 
@@ -118,7 +118,7 @@ const EditBiodata = () => {
                 type="radio"
                 value="Male"
                 {...register('biodataType', { required: true })}
-                className="accent-rose-500"
+                className="accent-maroon"
               />
               <span>Male</span>
             </label>
@@ -127,7 +127,7 @@ const EditBiodata = () => {
                 type="radio"
                 value="Female"
                 {...register('biodataType', { required: true })}
-                className="accent-rose-500"
+                className="accent-maroon"
               />
               <span>Female</span>
             </label>
@@ -140,7 +140,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Name *</label>
           <input
             {...register('name', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.name ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Your full name"
@@ -156,7 +156,7 @@ const EditBiodata = () => {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="w-full rounded border border-gray-300 cursor-pointer hover:border-rose-500 transition"
+              className="w-full rounded border border-gray-300 cursor-pointer hover:border-gold transition"
             />
             {uploading && <p className="text-blue-500 text-xs mt-1">Uploading...</p>}
             <input type="hidden" {...register('profileImage', { required: true })} />
@@ -169,7 +169,7 @@ const EditBiodata = () => {
             <label className="block mb-2 font-medium text-gray-700">Mobile Number *</label>
             <input
               {...register('mobile', { required: true })}
-              className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+              className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
                 errors.mobile ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="e.g. +8801XXXXXXXXX"
@@ -184,7 +184,7 @@ const EditBiodata = () => {
           <input
             type="date"
             {...register('dob', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.dob ? 'border-red-500' : 'border-gray-300'
             }`}
           />
@@ -196,7 +196,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Height *</label>
           <select
             {...register('height', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.height ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -213,7 +213,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Weight (kg) *</label>
           <select
             {...register('weight', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.weight ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -231,7 +231,7 @@ const EditBiodata = () => {
           <input
             type="number"
             {...register('age', { required: true, min: 18 })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.age ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Your age"
@@ -244,7 +244,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Occupation *</label>
           <select
             {...register('occupation', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.occupation ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -263,7 +263,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Race (Skin Color) *</label>
           <select
             {...register('race', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.race ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -280,7 +280,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Father's Name *</label>
           <input
             {...register('fatherName', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.fatherName ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Father's full name"
@@ -295,7 +295,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Mother's Name *</label>
           <input
             {...register('motherName', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.motherName ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Mother's full name"
@@ -310,7 +310,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Permanent Division *</label>
           <select
             {...register('permanentDivision', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.permanentDivision ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -331,7 +331,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Present Division *</label>
           <select
             {...register('presentDivision', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.presentDivision ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -353,7 +353,7 @@ const EditBiodata = () => {
           <input
             type="number"
             {...register('expectedPartnerAge', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.expectedPartnerAge ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Expected age"
@@ -368,7 +368,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Expected Partner Height *</label>
           <select
             {...register('expectedPartnerHeight', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.expectedPartnerHeight ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -387,7 +387,7 @@ const EditBiodata = () => {
           <label className="block mb-2 font-medium text-gray-700">Expected Partner Weight *</label>
           <select
             {...register('expectedPartnerWeight', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-rose-400 ${
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.expectedPartnerWeight ? 'border-red-500' : 'border-gray-300'
             }`}
           >
@@ -416,7 +416,7 @@ const EditBiodata = () => {
         <div className="md:col-span-2 text-center mt-6">
           <button
             type="submit"
-            className="px-8 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-lg font-semibold hover:opacity-90 transition"
+            className="px-8 py-3 bg-gradient-to-r from-maroon to-gold text-white rounded-lg font-semibold hover:opacity-90 transition"
           >
             {isEditing ? 'Update Biodata' : 'Save And Publish Now'}
           </button>

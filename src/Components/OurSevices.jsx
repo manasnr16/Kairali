@@ -42,7 +42,7 @@ const NextArrow = ({ onClick }) => (
     onClick={onClick}
     className="arrow next text-white text-xl absolute top-1/2 right-4 z-20 transform -translate-y-1/2 cursor-pointer"
   >
-    <FaArrowRight color="#C70036" />
+    <FaArrowRight color="#7A1F2B" />
   </div>
 );
 
@@ -51,7 +51,7 @@ const PrevArrow = ({ onClick }) => (
     onClick={onClick}
     className="arrow prev text-white text-xl absolute top-1/2 left-4 z-20 transform -translate-y-1/2 cursor-pointer"
   >
-    <FaArrowLeft color="#C70036" />
+    <FaArrowLeft color="#7A1F2B" />
   </div>
 );
 
@@ -115,8 +115,8 @@ const OurServices = () => {
 
   return (
     <div className="bg-black py-16 text-white">
-      <h2 className="text-center  subtitle-font text-[#C48C46] ">Quick Access</h2>
-      <h1 className="text-center text-3xl sm:text-4xl  font-bold subtitle-font text-[#C48C46] ">Our Services</h1>
+      <h2 className="text-center  subtitle-font text-[#C89B3C] ">Quick Access</h2>
+      <h1 className="text-center text-3xl sm:text-4xl  font-bold subtitle-font text-[#C89B3C] ">Our Services</h1>
       <img src="/flower.png" alt="" className="w-50 mx-auto mb-16" />
 
       <div className="relative px-2 sm:px-4 md:px-10">

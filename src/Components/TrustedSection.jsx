@@ -37,7 +37,7 @@ const testimonials = [
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute left-0 top-1/2 z-10 transform -translate-y-1/2 bg-[#ffb86c] text-white p-3 rounded-full shadow-md hover:bg-[#e0a84a] transition-colors duration-300 sm:-left-3 sm:p-2"
+    className="absolute left-0 top-1/2 z-10 transform -translate-y-1/2 bg-[#C89B3C] text-white p-3 rounded-full shadow-md hover:bg-[#A67C2E] transition-colors duration-300 sm:-left-3 sm:p-2"
     aria-label="Previous Slide"
   >
     <FaChevronLeft />
@@ -47,7 +47,7 @@ const PrevArrow = ({ onClick }) => (
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute right-0 top-1/2 z-10 transform -translate-y-1/2 bg-[#ffb86c] text-white p-3 rounded-full shadow-md hover:bg-[#e0a84a] transition-colors duration-300 sm:-right-3 sm:p-2"
+    className="absolute right-0 top-1/2 z-10 transform -translate-y-1/2 bg-[#C89B3C] text-white p-3 rounded-full shadow-md hover:bg-[#A67C2E] transition-colors duration-300 sm:-right-3 sm:p-2"
     aria-label="Next Slide"
   >
     <FaChevronRight />
@@ -87,8 +87,8 @@ const TrustedSection = () => {
   return (
     <section className="py-16 mt-12">
       <div className="text-center mb-10 px-4 sm:px-6 lg:px-8">
-        <h4 className="text-lg text-[#b98c5e] tracking-widest subtitle-font font-semibold">TRUSTED BRAND</h4>
-        <h2 className="text-3xl sm:text-4xl font-bold subtitle-font  text-[#4e2f1f] mt-2">
+        <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold">TRUSTED BRAND</h4>
+        <h2 className="text-3xl sm:text-4xl font-bold subtitle-font  text-[#2B211C] mt-2">
           Trust by <span className="text-5xl font-extrabold">2500+</span> Couples
         </h2>
         <div className="flex justify-center mt-4">
@@ -108,13 +108,13 @@ const TrustedSection = () => {
                     className="w-full h-full object-cover"
                   />
                   {/* Colored corners */}
-                  <div className="absolute w-2 h-2 bg-red-400 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-sm" />
-                  <div className="absolute w-2 h-2 bg-yellow-400 bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-sm" />
-                  <div className="absolute w-2 h-2 bg-blue-400 top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-sm" />
-                  <div className="absolute w-2 h-2 bg-purple-400 bottom-0 right-1/2 translate-x-1/2 translate-y-1/2 rounded-sm" />
+                  <div className="absolute w-2 h-2 bg-maroon top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-sm" />
+                  <div className="absolute w-2 h-2 bg-gold bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-sm" />
+                  <div className="absolute w-2 h-2 bg-forest top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-sm" />
+                  <div className="absolute w-2 h-2 bg-gold-dark bottom-0 right-1/2 translate-x-1/2 translate-y-1/2 rounded-sm" />
                 </div>
                 <p className="text-gray-600 text-sm mb-4">{item.text}</p>
-                <h3 className="text-[#4e2f1f] font-semibold">{item.name}</h3>
+                <h3 className="text-[#2B211C] font-semibold">{item.name}</h3>
                 <p className="text-gray-500 text-sm">{item.location}</p>
               </div>
             </div>

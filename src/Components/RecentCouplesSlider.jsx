@@ -53,8 +53,8 @@ const {successStories} = useDashboardStats();
 
   return (
     <div className="py-32 ">
-       <h4 className="text-lg text-[#b98c5e] tracking-widest subtitle-font font-semibold text-center ">collections</h4>
-      <h2 className="text-center text-3xl sm:text-4xl font-bold subtitle-font  text-[#4e2f1f] mt-2 ">Photo gallery</h2>
+       <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold text-center ">collections</h4>
+      <h2 className="text-center text-3xl sm:text-4xl font-bold subtitle-font  text-[#2B211C] mt-2 ">Photo gallery</h2>
       <img src="/flower.png" alt="" className="w-50 mx-auto mb-16" />
       <div className="relative px-4 ">
         <Slider {...settings}>

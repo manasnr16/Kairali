@@ -24,7 +24,7 @@ const SuccessStories = () => {
           {/* Table for md and up */}
           <div className="hidden md:block overflow-x-auto bg-white shadow rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-green-600 text-white">
+              <thead className="bg-maroon text-white">
                 <tr className="text-center">
                   <th className="px-2 py-3 text-sm font-semibold">Male ID</th>
                   <th className="px-2 py-3 text-sm font-semibold">Female ID</th>
@@ -46,7 +46,7 @@ const SuccessStories = () => {
                     <td className="px-2 py-3 text-sm">
                       <button
                         onClick={() => setSelectedStory(story)}
-                        className="text-blue-600 hover:underline text-xs"
+                        className="text-maroon hover:underline text-xs"
                       >
                         View Story
                       </button>
@@ -73,7 +73,7 @@ const SuccessStories = () => {
                 </p>
                 <button
                   onClick={() => setSelectedStory(story)}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-sm"
+                  className="w-full bg-maroon hover:bg-maroon-dark text-white px-3 py-2 rounded text-sm"
                 >
                   View Story
                 </button>
@@ -104,7 +104,7 @@ const SuccessStories = () => {
 
             {/* Content */}
             <div className="p-4 sm:p-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-ink mb-2">
                 {selectedStory.title}
               </h2>
               <p className="text-sm text-gray-600 mb-1">
@@ -119,7 +119,7 @@ const SuccessStories = () => {
               </p>
               <div className="flex items-center mb-3">
                 {Array.from({ length: selectedStory.rating }).map((_, i) => (
-                  <FaStar key={i} className="text-yellow-500 mr-1" />
+                  <FaStar key={i} className="text-gold mr-1" />
                 ))}
               </div>
               <p className="text-gray-700 text-sm sm:text-base">{selectedStory.story}</p>

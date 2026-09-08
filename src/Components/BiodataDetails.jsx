@@ -74,7 +74,7 @@ const BiodataDetails = () => {
     );
 
   return (
-    <div className="min-h-screen bg-amber-50 pt-12 pb-20 overflow-hidden">
+    <div className="min-h-screen bg-cream pt-12 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 p-4 md:h-[100vh]">
 
         {/* Left: Fixed Image */}
@@ -88,21 +88,21 @@ const BiodataDetails = () => {
 
         {/* Right: Scrollable Content */}
         <div className="overflow-visible pt-6 pb-16 px-1 md:overflow-y-auto md:h-[100vh] md:pt-12 md:pr-3 hide-scrollbar">
-          <h1 className="text-3xl subtitle-font font-bold text-[#7c4d0c] uppercase">
+          <h1 className="text-3xl subtitle-font font-bold text-[#2B211C] uppercase">
             {biodata.name}
           </h1>
 
           <div className="flex flex-wrap gap-3 mt-4">
-            <div className="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm">
+            <div className="bg-sand text-ink px-3 py-1 rounded-full text-sm">
               City: {biodata.presentDivision}
             </div>
-            <div className="bg-pink-200 text-pink-800 px-3 py-1 rounded-full text-sm">
+            <div className="bg-gold/20 text-maroon-dark px-3 py-1 rounded-full text-sm">
               Age: {biodata.age}
             </div>
-            <div className="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm">
+            <div className="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm">
               Height: {biodata.height}
             </div>
-            <div className="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm">
+            <div className="bg-maroon/10 text-maroon px-3 py-1 rounded-full text-sm">
               Job: {biodata.occupation}
             </div>
           </div>
@@ -145,10 +145,10 @@ const BiodataDetails = () => {
             </h3>
             {authUser.isPremium  ? (
               <div>
-                <p className="flex items-center gap-2 text-green-700">
+                <p className="flex items-center gap-2 text-forest">
                   <FaPhone /> {biodata.mobile}
                 </p>
-                <p className="flex items-center gap-2 text-green-700">
+                <p className="flex items-center gap-2 text-forest">
                   <FaEnvelope /> {biodata.email}
                 </p>
               </div>
@@ -161,7 +161,7 @@ const BiodataDetails = () => {
 
           {/* Personal Info */}
           <h3 className="font-semibold text-lg my-4 text-gray-700">Personal Information</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-ink">
             <p><strong>Father's Name:</strong> {biodata.fatherName}</p>
             <p><strong>Mother's Name:</strong> {biodata.motherName}</p>
             <p><strong>Date of Birth:</strong> {biodata.dob}</p>
@@ -174,7 +174,7 @@ const BiodataDetails = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => handleFavourite(biodata)}
-              className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg flex items-center justify-center gap-2"
+              className="bg-maroon hover:bg-maroon-dark text-white px-6 py-2 rounded-lg flex items-center justify-center gap-2"
             >
               <FaHeart /> Add to Favourites
             </button>
@@ -183,7 +183,7 @@ const BiodataDetails = () => {
                 to={`/checkout/${biodata.bioId}`}
                 className=""
               >
-                <button className="bg-blue-600 hover:bg-blue-700 w-full text-white px-6 py-2 rounded-lg">
+                <button className="bg-maroon hover:bg-maroon-dark w-full text-white px-6 py-2 rounded-lg">
                   Request Contact Info
                 </button>
               </Link>

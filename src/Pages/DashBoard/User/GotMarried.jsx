@@ -85,7 +85,7 @@ const GotMarried = () => {
           <input
             type="number"
             {...register('partnerId', { required: 'Partner ID is required' })}
-            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-rose-400"
+            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-gold"
           />
           {errors.partnerId && (
             <p className="text-red-500 text-sm mt-1">{errors.partnerId.message}</p>
@@ -99,7 +99,7 @@ const GotMarried = () => {
             type="text"
             {...register('title', { required: 'Title is required' })}
             placeholder="e.g., Online Bond"
-            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-rose-400"
+            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-gold"
           />
           {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>}
         </div>
@@ -110,7 +110,7 @@ const GotMarried = () => {
           <input
             type="date"
             {...register('marriageDate', { required: 'Marriage date is required' })}
-            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-rose-400"
+            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-gold"
           />
           {errors.marriageDate && (
             <p className="text-red-500 text-sm mt-1">{errors.marriageDate.message}</p>
@@ -125,7 +125,7 @@ const GotMarried = () => {
             min="1"
             max="5"
             {...register('rating', { required: 'Rating is required' })}
-            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-rose-400"
+            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-gold"
           />
           {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating.message}</p>}
         </div>
@@ -137,7 +137,7 @@ const GotMarried = () => {
             type="file"
             accept="image/*"
             {...register('image', { required: 'Image is required' })}
-            className="w-full border px-4 rounded-md bg-white file:mr-4 file:py-3 file:px-3 file:border file:rounded file:bg-rose-500 file:text-white cursor-pointer"
+            className="w-full border px-4 rounded-md bg-white file:mr-4 file:py-3 file:px-3 file:border file:rounded file:bg-gold file:text-white cursor-pointer"
           />
           {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>}
         </div>
@@ -149,7 +149,7 @@ const GotMarried = () => {
             {...register('story', { required: 'Your story is required' })}
             rows="5"
             placeholder="Share how you found love on our platform..."
-            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-rose-400 resize-none"
+            className="w-full border px-4 py-2 rounded-md outline-none focus:ring-2 ring-gold resize-none"
           ></textarea>
           {errors.story && <p className="text-red-500 text-sm mt-1">{errors.story.message}</p>}
         </div>
@@ -162,7 +162,7 @@ const GotMarried = () => {
             className={`${
               uploadingImg || mutation.isLoading
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-rose-500 to-pink-500 cursor-pointer'
+                : 'bg-gradient-to-r from-maroon to-gold cursor-pointer'
             } text-white px-6 py-2 rounded-md font-medium hover:opacity-90 transition`}
           >
             {uploadingImg || mutation.isLoading ? 'Uploading...' : 'Submit Story'}

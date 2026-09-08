@@ -127,7 +127,7 @@ const BiodatasPage = () => {
 
                     <button
                         onClick={onApplyFilters}
-                        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+                        className="w-full bg-maroon text-white py-2 rounded hover:bg-maroon-dark"
                     >
                         Apply Filters
                     </button>
@@ -135,8 +135,8 @@ const BiodatasPage = () => {
 
                 {/* Biodata Listing */}
                 <div className="md:col-span-2 space-y-4">
-                    <h1 className=' border-b-2 pb-4 border-rose-500 uppercase text-xl font-semibold'>total biodata 
-                         <span className='text-rose-600 text-2xl subtitle-font'> {allBiodata.length}</span></h1>
+                    <h1 className=' border-b-2 pb-4 border-gold uppercase text-xl font-semibold'>total biodata 
+                         <span className='text-maroon text-2xl subtitle-font'> {allBiodata.length}</span></h1>
                     {isLoading ? (
                         <Loader></Loader>
                     ) : (
@@ -169,7 +169,7 @@ const BiodatasPage = () => {
                                 <button
                                     key={num}
                                     onClick={() => setCurrentPage(num + 1)}
-                                    className={`px-3 py-1 rounded border ${currentPage === num + 1 ? 'bg-blue-600 text-white' : 'hover:bg-gray-200'}`}
+                                    className={`px-3 py-1 rounded border ${currentPage === num + 1 ? 'bg-maroon text-white' : 'hover:bg-gray-200'}`}
                                 >
                                     {num + 1}
                                 </button>

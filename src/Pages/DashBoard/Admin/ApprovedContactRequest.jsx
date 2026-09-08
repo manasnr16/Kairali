@@ -66,7 +66,7 @@ const ApprovedContactRequest = () => {
           {/* Table for md and up */}
           <div className="hidden md:block overflow-x-auto  bg-white shadow rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-green-600 text-white">
+              <thead className="bg-maroon text-white">
                 <tr className="text-center">
                   <th className="px-2 py-3  text-sm font-semibold ">Name</th>
                   <th className="px-2 py-3 text-sm font-semibold">Email</th>
@@ -101,7 +101,7 @@ const ApprovedContactRequest = () => {
                       ) : (
                         <button
                           onClick={() => handleApprove(_id)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs"
+                          className="bg-maroon hover:bg-maroon-dark text-white px-3 py-1 rounded text-xs"
                         >
                           Approve
                         </button>
@@ -139,7 +139,7 @@ const ApprovedContactRequest = () => {
                 ) : (
                   <button
                     onClick={() => handleApprove(_id)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-sm"
+                    className="w-full bg-maroon hover:bg-maroon-dark text-white px-3 py-2 rounded text-sm"
                   >
                     Approve Contact
                   </button>

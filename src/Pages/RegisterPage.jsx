@@ -97,7 +97,7 @@ const RegisterPage = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white w-full max-w-md p-6 sm:p-8 rounded-xl shadow-lg"
       >
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center subtitle-font text-rose-600">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center subtitle-font text-maroon">
           Create Account
         </h2>
 
@@ -108,7 +108,7 @@ const RegisterPage = () => {
         <input
           type="text"
           placeholder="Full Name"
-          className={`w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-rose-300 ${errors.name ? 'border-red-500' : 'border-gray-300'
+          className={`w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-gold ${errors.name ? 'border-red-500' : 'border-gray-300'
             }`}
           {...register('name', { required: 'Full Name is required' })}
         />
@@ -119,7 +119,7 @@ const RegisterPage = () => {
         <input
           type="email"
           placeholder="Email"
-          className={`w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-rose-300 ${errors.email ? 'border-red-500' : 'border-gray-300'
+          className={`w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-gold ${errors.email ? 'border-red-500' : 'border-gray-300'
             }`}
           {...register('email', {
             required: 'Email is required',
@@ -137,7 +137,7 @@ const RegisterPage = () => {
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
-            className={`w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-rose-300 ${errors.password ? 'border-red-500' : 'border-gray-300'
+            className={`w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-gold ${errors.password ? 'border-red-500' : 'border-gray-300'
               }`}
             {...register('password', {
               required: 'Password is required',
@@ -161,7 +161,7 @@ const RegisterPage = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-rose-600 hover:bg-rose-700 text-white py-2 rounded transition duration-300 text-sm sm:text-base"
+          className="w-full bg-maroon hover:bg-maroon-dark text-white py-2 rounded transition duration-300 text-sm sm:text-base"
         >
           {loading ? 'Registering...' : 'Register'}
         </button>
@@ -182,7 +182,7 @@ const RegisterPage = () => {
 
         <p className="text-sm text-center mt-4">
           Already have an account?{' '}
-          <Link to="/loginpage" className="text-rose-600 font-medium hover:underline">
+          <Link to="/loginpage" className="text-maroon font-medium hover:underline">
             Login here
           </Link>
         </p>

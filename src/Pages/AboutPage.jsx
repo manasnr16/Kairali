@@ -3,11 +3,11 @@ import React from "react";
 
 const AboutPage = () => {
   return (
-    <section className="bg-[#fffdf7] py-32 px-4 min-h-[70vh]">
+    <section className="bg-[#FBF6EC] py-32 px-4 min-h-[70vh]">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-6">About Us</h2>
+        <h2 className="text-4xl font-bold text-ink mb-6">About Us</h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          At <span className="font-semibold text-pink-600">Rishta</span>, we believe in
+          At <span className="font-semibold text-maroon">Rishta</span>, we believe in
           connecting hearts and building lasting relationships. Our platform is designed
           to help individuals find their perfect life partners based on shared values,
           culture, and trust. Whether you're seeking companionship, love, or marriage,

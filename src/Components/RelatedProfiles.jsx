@@ -9,7 +9,7 @@ import axiosInstance from "../Axios Instance/axios";
 // Custom arrow components for the slider
 const PrevArrow = (props) => (
   <div
-    className="absolute left-[-15px] top-[40%] z-10 bg-[#E0A84A] text-white shadow p-2 rounded-full cursor-pointer"
+    className="absolute left-[-15px] top-[40%] z-10 bg-[#A67C2E] text-white shadow p-2 rounded-full cursor-pointer"
     onClick={props.onClick}
   >
     <FaChevronLeft />
@@ -18,7 +18,7 @@ const PrevArrow = (props) => (
 
 const NextArrow = (props) => (
   <div
-    className="absolute right-[-15px] top-[40%] z-10 bg-[#E0A84A] text-white shadow p-2 rounded-full cursor-pointer"
+    className="absolute right-[-15px] top-[40%] z-10 bg-[#A67C2E] text-white shadow p-2 rounded-full cursor-pointer"
     onClick={props.onClick}
   >
     <FaChevronRight />
@@ -84,7 +84,7 @@ const RelatedProfiles = () => {
                   {profile.age} Years old
                 </div>
                 <div className="bg-white py-3 text-center shadow mt-[-20px] relative z-10 mx-4 rounded-lg">
-                  <p className="font-semibold text-orange-800 text-base lowercase">{profile.name}</p>
+                  <p className="font-semibold text-maroon-dark text-base lowercase">{profile.name}</p>
                   <p className="text-sm text-gray-600 uppercase">
                     City: {profile.presentDivision}
                   </p>

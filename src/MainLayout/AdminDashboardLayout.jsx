@@ -47,16 +47,16 @@ const AdminDashboardLayout = () => {
   ];
 
   const activeClass =
-    "bg-blue-600 text-white rounded-md px-3 py-2 flex items-center gap-2";
+    "bg-maroon text-white rounded-md px-3 py-2 flex items-center gap-2";
   const inactiveClass =
-    "text-blue-700 hover:bg-blue-200 rounded-md px-3 py-2 flex items-center gap-2";
+    "text-maroon-dark hover:bg-gold/20 rounded-md px-3 py-2 flex items-center gap-2";
 
   return (
     <div>
       <div className="min-h-screen flex flex-col md:flex-row relative">
         {/* Desktop Sidebar */}
-        <aside className="hidden md:flex md:flex-col w-60 lg:w-72  p-4 bg-blue-100  shadow-md">
-          <h2 className="text-2xl font-bold mb-8 text-blue-600 text-center">
+        <aside className="hidden md:flex md:flex-col w-60 lg:w-72  p-4 bg-cream  shadow-md">
+          <h2 className="text-2xl font-bold mb-8 text-maroon text-center">
             Admin Dashboard
           </h2>
           <nav className="flex flex-col space-y-4 font-semibold">
@@ -85,9 +85,9 @@ const AdminDashboardLayout = () => {
         </aside>
 
         {/* Mobile Navbar */}
-        <div className="flex md:hidden items-center justify-between bg-blue-100 p-4 shadow-md">
-          <h2 className="text-xl font-bold subtitle-font text-blue-600">Dashboard</h2>
-          <button onClick={toggleDrawer} className="text-2xl text-blue-700">
+        <div className="flex md:hidden items-center justify-between bg-cream p-4 shadow-md">
+          <h2 className="text-xl font-bold subtitle-font text-maroon">Dashboard</h2>
+          <button onClick={toggleDrawer} className="text-2xl text-maroon-dark">
             {drawerOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
@@ -96,16 +96,16 @@ const AdminDashboardLayout = () => {
         {drawerOpen && (
           <div className="fixed inset-0 z-50 bg-black/40 bg-opacity-50">
             <div
-              className="absolute top-0 right-0 w-64 h-full bg-blue-100 p-6 shadow-lg"
+              className="absolute top-0 right-0 w-64 h-full bg-cream p-6 shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-end mb-4">
-                <button onClick={toggleDrawer} className="text-2xl text-blue-700">
+                <button onClick={toggleDrawer} className="text-2xl text-maroon-dark">
                   <FaTimes />
                 </button>
               </div>
 
-              <nav className="flex flex-col space-y-4 font-semibold text-blue-700">
+              <nav className="flex flex-col space-y-4 font-semibold text-maroon-dark">
                 {links.map(({ to, label, icon }) => (
                   <NavLink
                     key={to}
@@ -135,14 +135,14 @@ const AdminDashboardLayout = () => {
         {/* Main Content */}
         <main className="flex-1 p-3 bg-white">
           <div className="flex justify-between border-b-2 pb-4 border-gray-200 lg:mx-10">
-            <div className="flex gap-1.5 md:gap-3 lg:gap-10 items-center *:hover:text-pink-700">
+            <div className="flex gap-1.5 md:gap-3 lg:gap-10 items-center *:hover:text-gold-dark">
               <NavLink to="/" className="">Home </NavLink>
               <FaChevronRight className="mt-2" />
               <NavLink to="/about">About</NavLink>
               <FaChevronRight className="mt-2" />
               <NavLink to="/contact">Contact</NavLink>
             </div>
-            <img src={biodata?.profileImage || user?.photoURL} alt="User" className="w-10 h-10 border-2 border-amber-400  rounded-full" />
+            <img src={biodata?.profileImage || user?.photoURL} alt="User" className="w-10 h-10 border-2 border-gold  rounded-full" />
           </div>
           <Outlet />
         </main>

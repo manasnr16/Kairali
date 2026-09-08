@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 
 const TopBar = () => {
   return (
-    <div className="bg-[#4B2E2E] ">
+    <div className="bg-[#2B211C] ">
       <div className="max-w-screen-xl   mx-auto text-white text-sm px-4 py-2 hidden md:flex justify-between items-center font-poppins">
         {/* Left Side: Contact Info */}
         <div className="flex items-center gap-6">
@@ -18,13 +18,13 @@ const TopBar = () => {
 
        
         <div className="flex items-center gap-4">
-          <a href="#" className="hover:text-yellow-400 transition-colors duration-200">
+          <a href="#" className="hover:text-gold transition-colors duration-200">
             <FaFacebookF />
           </a>
-          <a href="#" className="hover:text-yellow-400 transition-colors duration-200">
+          <a href="#" className="hover:text-gold transition-colors duration-200">
             <FaTwitter />
           </a>
-          <a href="#" className="hover:text-yellow-400 transition-colors duration-200">
+          <a href="#" className="hover:text-gold transition-colors duration-200">
             <FaWhatsapp />
           </a>
         </div>

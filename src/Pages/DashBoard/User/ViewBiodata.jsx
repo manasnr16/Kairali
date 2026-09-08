@@ -45,7 +45,7 @@ const ViewBiodata = () => {
 
   return (
     <div className="px-4 lg:px-6 py-10 ">
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-10">📋 View Biodata</h2>
+      <h2 className="text-4xl font-bold text-center text-ink mb-10">📋 View Biodata</h2>
 
       {/* Profile Section */}
       <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-md p-4  flex flex-col md:flex-col lg:flex-row items-center gap-5  mb-10 border border-gray-200 transition duration-300 hover:shadow-xl overflow-hidden">
@@ -53,17 +53,17 @@ const ViewBiodata = () => {
           <img
             src={biodata?.profileImage || user?.photoURL || '/default-avatar.png'}
             alt="Profile"
-            className="w-32 lg:ml-10 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#FFBD0E] shadow-md mx-auto"
+            className="w-32 lg:ml-10 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#C89B3C] shadow-md mx-auto"
           />
-          <div className="absolute -bottom-2 right-0 bg-rose-600 text-white text-xs px-3 py-1 rounded-full shadow">
+          <div className="absolute -bottom-2 right-0 bg-maroon text-white text-xs px-3 py-1 rounded-full shadow">
             ID : {biodata?.bioId || 'BD-ID'}
           </div>
         </div>
 
-        <div className=" w-full flex lg:flex-row flex-col justify-evenly   text-gray-800 break-words">
+        <div className=" w-full flex lg:flex-row flex-col justify-evenly   text-ink break-words">
         <div className='lg:space-y-3'>
             <p className="flex gap-2 items-center">
-            <FaUser className="text-rose-400" />
+            <FaUser className="text-gold" />
             <span className="font-semibold text-gray-600">Name:</span> {biodata?.name}
           </p>
            <p className="flex gap-2 items-center">
@@ -78,7 +78,7 @@ const ViewBiodata = () => {
           
           <p className="flex gap-2 items-center">
             🎯 <span className="font-semibold text-gray-600">Biodata Type:</span>
-            <span className="ml-1 inline-block bg-rose-100 text-rose-600 px-2 py-0.5 rounded-full text-sm font-medium">
+            <span className="ml-1 inline-block bg-gold/10 text-maroon px-2 py-0.5 rounded-full text-sm font-medium">
               {biodata?.biodataType}
             </span>
           </p>
@@ -128,11 +128,11 @@ const ViewBiodata = () => {
       {/* Contact Info */}
       <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
         <div className="flex items-center text-[15px] gap-2">
-          <FaEnvelope className="text-rose-500" />
+          <FaEnvelope className="text-gold" />
           <span className="font-semibold">Email:</span> {biodata?.email}
         </div>
         <div className="flex items-center gap-3">
-          <FaPhoneAlt className="text-rose-500" />
+          <FaPhoneAlt className="text-gold" />
           <span className="font-semibold">Mobile:</span> {biodata?.mobile}
         </div>
       </div>
@@ -146,7 +146,7 @@ const ViewBiodata = () => {
         ) : (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-xl shadow hover:opacity-90 transition"
+            className="px-6 py-3 bg-gradient-to-r from-maroon to-gold text-white font-semibold rounded-xl shadow hover:opacity-90 transition"
           >
             Make Biodata Premium
           </button>
@@ -171,7 +171,7 @@ const ViewBiodata = () => {
               <button
                 onClick={() => handlePremiumRequest(user?.email)}
                 disabled={isSending}
-                className="px-4 py-2 bg-rose-600 text-white rounded hover:bg-rose-700"
+                className="px-4 py-2 bg-maroon text-white rounded hover:bg-maroon-dark"
               >
                 {isSending ? 'Sending...' : 'Yes, Make Premium'}
               </button>
