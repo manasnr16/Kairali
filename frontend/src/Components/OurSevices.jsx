@@ -6,26 +6,26 @@ import "slick-carousel/slick/slick-theme.css";
 
 const services = [
   {
-    title: "Photo Gellary",
-    sub: "1200+ Profiles",
+    title: "Photo Gallery",
+    sub: "Explore Profiles",
     image: "/img1.png",
     icon: "/photo-camera.png",
   },
   {
     title: "Browse Profiles",
-    sub: "1200+ Profiles",
+    sub: "Explore Profiles",
     image: "/img2.png",
     icon: "/user.png",
   },
   {
-    title: "Wedding",
-    sub: "1200+ Profiles",
+    title: "Matrimony",
+    sub: "Explore Profiles",
     image: "/img3.png",
     icon: "/gate.png",
   },
   {
     title: "All Services",
-    sub: "1200+ Profiles",
+    sub: "Explore Profiles",
     image: "/img4.png",
     icon: "/hall.png",
   },
@@ -115,8 +115,8 @@ const OurServices = () => {
 
   return (
     <div className="bg-black py-16 text-white">
-      <h2 className="text-center  subtitle-font text-[#C89B3C] ">Quick Access</h2>
-      <h1 className="text-center text-3xl sm:text-4xl  font-bold subtitle-font text-[#C89B3C] ">Our Services</h1>
+      <h2 className="text-center  subtitle-font text-[#C89B3C] ">Discover</h2>
+      <h1 className="text-center text-3xl sm:text-4xl  font-bold subtitle-font text-[#C89B3C] ">Explore Kairali Match Makers</h1>
       <img src="/flower.png" alt="" className="w-50 mx-auto mb-16" />
 
       <div className="relative px-2 sm:px-4 md:px-10">

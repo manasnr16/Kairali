@@ -5,7 +5,11 @@ import axiosInstance from '../../../Axios Instance/axios';
 import Swal from 'sweetalert2';
 import { useDashboardStats } from '../../../Utils/Utils';
 
-const divisions = ['Dhaka', 'Chattagram', 'Rangpur', 'Barisal', 'Khulna', 'Satkhira', 'Mymensingh', 'Sylhet'];
+const divisions = [
+  'Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam',
+  'Idukki', 'Ernakulam', 'Thrissur', 'Palakkad', 'Malappuram',
+  'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod',
+];
 
 const EditBiodata = () => {
   const { uploadImage, uploading, user, biodata, refetchBiodata } = useContext(AuthContext);
@@ -241,7 +245,7 @@ const EditBiodata = () => {
 
         {/* Occupation */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Occupation *</label>
+          <label className="block mb-2 font-medium text-gray-700">Profession *</label>
           <select
             {...register('occupation', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
@@ -307,14 +311,14 @@ const EditBiodata = () => {
 
         {/* Permanent Division */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Permanent Division *</label>
+          <label className="block mb-2 font-medium text-gray-700">Permanent District *</label>
           <select
             {...register('permanentDivision', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.permanentDivision ? 'border-red-500' : 'border-gray-300'
             }`}
           >
-            <option value="">Select division</option>
+            <option value="">Select district</option>
             {divisions.map((div) => (
               <option key={div} value={div}>
                 {div}
@@ -328,14 +332,14 @@ const EditBiodata = () => {
 
         {/* Present Division */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Present Division *</label>
+          <label className="block mb-2 font-medium text-gray-700">Current District *</label>
           <select
             {...register('presentDivision', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.presentDivision ? 'border-red-500' : 'border-gray-300'
             }`}
           >
-            <option value="">Select division</option>
+            <option value="">Select district</option>
             {divisions.map((div) => (
               <option key={div} value={div}>
                 {div}
@@ -349,7 +353,7 @@ const EditBiodata = () => {
 
         {/* Expected Partner Age */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Expected Partner Age *</label>
+          <label className="block mb-2 font-medium text-gray-700">Preferred Age *</label>
           <input
             type="number"
             {...register('expectedPartnerAge', { required: true })}
@@ -365,7 +369,7 @@ const EditBiodata = () => {
 
         {/* Expected Partner Height */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Expected Partner Height *</label>
+          <label className="block mb-2 font-medium text-gray-700">Preferred Height *</label>
           <select
             {...register('expectedPartnerHeight', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
@@ -384,7 +388,7 @@ const EditBiodata = () => {
 
         {/* Expected Partner Weight */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Expected Partner Weight *</label>
+          <label className="block mb-2 font-medium text-gray-700">Preferred Weight *</label>
           <select
             {...register('expectedPartnerWeight', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${

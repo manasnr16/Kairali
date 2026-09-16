@@ -11,6 +11,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { AuthContext } from "../Contex/AuthProvider";
+import Avatar from "../Components/Avatar";
 import Swal from "sweetalert2";
 
 
@@ -22,11 +23,10 @@ const UserDashboardLayout = () => {
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const links = [
-    { to: "/userDashboard", label: "View Biodata", icon: <FaEye /> },
-    { to: "/userDashboard/editbio", label: "Edit Biodata", icon: <FaUserEdit /> },
+    { to: "/userDashboard", label: "My Profile", icon: <FaEye /> },
+    { to: "/userDashboard/editbio", label: "Edit My Biodata", icon: <FaUserEdit /> },
     { to: "/userDashboard/myContactRequest", label: "Contact Requests", icon: <FaPaperPlane /> },
-    { to: "/userDashboard/favourites", label: "Favourite Biodatas", icon: <FaHeart /> },
-    { to: "/userDashboard/gotMarried", label: "Got Married", icon: <FaHeart /> },
+    { to: "/userDashboard/favourites", label: "Shortlisted Profiles", icon: <FaHeart /> },
   ];
 
   const HandalLogOut =() =>{
@@ -141,7 +141,7 @@ const UserDashboardLayout = () => {
               <FaChevronRight className="mt-2" />
               <NavLink to="/contact">Contact</NavLink>
             </div>
-            <img src={biodata?.profileImage || user?.photoURL} alt="" className="w-10 h-10 border-2 border-gold  rounded-full" />
+            <Avatar src={biodata?.profileImage || user?.photoURL} className="w-10 h-10 border-2 border-gold" />
           </div>
           <Outlet />
         </main>

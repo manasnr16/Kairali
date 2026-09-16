@@ -1,70 +1,61 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
+// AOS is initialized once globally in MainLayout — no per-section init here,
+// otherwise re-initializing resets/duplicates the observer and throws off
+// the scroll-trigger offsets for the rest of the page.
 
 const steps = [
   {
-    title: "Register",
-    description: "Create an account with your basic information to get started.",
+    title: "Create Your Profile",
+    description: "Create your matrimonial profile and share the details that help others know you better.",
     image: "/rings.png",
     position: "right",
   },
   {
-    title: "Find your Match",
-    description: "Browse profiles and find someone who matches your preferences.",
+    title: "Discover Your Matches",
+    description: "Explore Malayalee profiles based on your preferences, interests and expectations.",
     image: "/wedding-2.png",
     position: "left",
   },
   {
     title: "Send Interest",
-    description: "Show interest to someone you like by sending a request.",
+    description: "Found someone you would like to know better? Send an interest.",
     image: "/love-birds.png",
     position: "right",
   },
   {
-    title: "Get Profile Information",
-    description: "Access detailed information about profiles you're interested in.",
+    title: "Connect",
+    description: "Once there is mutual interest, begin a respectful conversation.",
     image: "/network.png",
     position: "left",
   },
   {
-    title: "Start Meetups",
-    description: "Communicate and schedule meetings to get to know each other.",
+    title: "Get to Know Each Other",
+    description: "Take time to understand each other's values, goals, family and expectations.",
     image: "/chat.png",
     position: "right",
   },
   {
-    title: "Getting Marriage",
-    description: "When everything aligns, plan your special day together.",
+    title: "Begin Your Next Chapter",
+    description: "When two families and two individuals find the right connection, a new journey begins.",
     image: "/wedding-couple.png",
     position: "left",
   },
 ];
 
 const HowItWorks = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      offset: 100,
-      easing: "ease-in-out",
-      delay: 300,
-      once: true,
-    });
-  }, []);
-
   return (
     <div className="py-16  overflow-x-hidden">
       <h4
         data-aos="fade-down"
         className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold text-center"
       >
-        moments
+        YOUR MATRIMONY JOURNEY
       </h4>
       <h2
         data-aos="fade-up"
         className="text-center text-3xl sm:text-4xl font-bold subtitle-font text-[#2B211C] mt-2"
       >
-        How it works
+        How It Works
       </h2>
       <img
         data-aos="zoom-in"

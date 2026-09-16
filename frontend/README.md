@@ -1,6 +1,6 @@
-# 💍 Rishta Matrimony 
+# 💍 Kairali Match Makers
 
-Welcome to **Rishta Matrimony**, a fully responsive MERN stack-based matchmaking platform. Users can create biodatas, search for potential matches, become premium members, and submit success stories. Admins manage users, premium approvals, and contact requests through a dedicated dashboard.
+Welcome to **Kairali Match Makers**, a fully responsive MERN stack-based matchmaking platform. Users can create biodatas, search for potential matches, become premium members, and submit success stories. Admins manage users, premium approvals, and contact requests through a dedicated dashboard.
 
 ---
 
@@ -15,7 +15,7 @@ Welcome to **Rishta Matrimony**, a fully responsive MERN stack-based matchmaking
 
 ## 🌐 Live Website
 
-➡️ [https://rishtamatrimony.netlify.app](https://rishtamatrimony.netlify.app)
+➡️ [https://kairalimatchmakers.netlify.app](https://kairalimatchmakers.netlify.app)
 
 ---
 
@@ -118,10 +118,10 @@ Welcome to **Rishta Matrimony**, a fully responsive MERN stack-based matchmaking
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/rishta-a12.git
+git clone https://github.com/your-username/kairali-match-makers.git
 
 # Navigate into the project
-cd rishta-a12
+cd kairali-match-makers
 
 # Install dependencies
 npm install

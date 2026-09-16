@@ -4,12 +4,12 @@ import { AuthContext } from "../Contex/AuthProvider";
 
 
 const PrivateAdmin = ({ children }) => {
-  const { user, loading, authUser } = useContext(AuthContext);
+  const { user, authChecked, authUser } = useContext(AuthContext);
   const location = useLocation();
 
   const isAdmin = authUser?.role === "admin";
 
-  if (loading) {
+  if (!authChecked) {
     return <div className="text-center mt-10 text-xl">Loading...</div>;
   }
 

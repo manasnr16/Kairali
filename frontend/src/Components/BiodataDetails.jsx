@@ -94,7 +94,7 @@ const BiodataDetails = () => {
 
           <div className="flex flex-wrap gap-3 mt-4">
             <div className="bg-sand text-ink px-3 py-1 rounded-full text-sm">
-              City: {biodata.presentDivision}
+              District: {biodata.presentDivision}
             </div>
             <div className="bg-gold/20 text-maroon-dark px-3 py-1 rounded-full text-sm">
               Age: {biodata.age}
@@ -103,7 +103,7 @@ const BiodataDetails = () => {
               Height: {biodata.height}
             </div>
             <div className="bg-maroon/10 text-maroon px-3 py-1 rounded-full text-sm">
-              Job: {biodata.occupation}
+              Profession: {biodata.occupation}
             </div>
           </div>
 
@@ -166,7 +166,7 @@ const BiodataDetails = () => {
             <p><strong>Mother's Name:</strong> {biodata.motherName}</p>
             <p><strong>Date of Birth:</strong> {biodata.dob}</p>
             <p><strong>Weight:</strong> {biodata.weight}kg</p>
-            <p><strong>Permanent Division:</strong> {biodata.permanentDivision}</p>
+            <p><strong>Permanent District:</strong> {biodata.permanentDivision}</p>
             <p><strong >Bio ID:</strong> #{biodata.bioId}</p>
           </div>
 

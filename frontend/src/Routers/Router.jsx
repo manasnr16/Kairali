@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate, Outlet } from "react-router";
 import MainLayout from "../MainLayout/MainLayout";
 import HomePage from "../Pages/HomePage";
 import LoginPage from "../Pages/LoginPage";
@@ -33,6 +33,14 @@ import Contact from "../Pages/Contact";
 import AboutPage from "../Pages/AboutPage";
 import SuccessStoryBlog from "../Components/SuccessStoryBlog";
 import SuccessStoryDetails from "../Components/SuccessStoryDetails";
+
+// /admin control panel (separate username/password auth, not Firebase)
+import { AdminAuthProvider } from "../Contex/AdminAuthContext";
+import AdminPrivateRoute from "./AdminPrivateRoute";
+import AdminLoginPage from "../Pages/AdminPanel/AdminLoginPage";
+import AdminPanelLayout from "../Pages/AdminPanel/AdminPanelLayout";
+import AdminStatsPage from "../Pages/AdminPanel/AdminStatsPage";
+import AdminProfilesPage from "../Pages/AdminPanel/AdminProfilesPage";
 
 
 
@@ -151,6 +159,45 @@ export const router = createBrowserRouter([
       {
         path: "successStories",
         element: <SuccessStories />,
+      },
+    ],
+  },
+
+  // ✅ /admin control panel — username/password staff login, isolated from
+  // the Firebase-based site auth used everywhere else.
+  {
+    path: "/admin",
+    element: (
+      <AdminAuthProvider>
+        <Outlet />
+      </AdminAuthProvider>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/admin/login" replace />,
+      },
+      {
+        path: "login",
+        element: <AdminLoginPage />,
+      },
+      {
+        path: "dashboard",
+        element: (
+          <AdminPrivateRoute>
+            <AdminPanelLayout />
+          </AdminPrivateRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <AdminStatsPage />,
+          },
+          {
+            path: "profiles",
+            element: <AdminProfilesPage />,
+          },
+        ],
       },
     ],
   },

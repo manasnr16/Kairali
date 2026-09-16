@@ -1,15 +1,67 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { Dialog } from '@headlessui/react';
+import { Link } from 'react-router';
 import { AuthContext } from '../../../Contex/AuthProvider';
 import axiosInstance from '../../../Axios Instance/axios';
 import Swal from 'sweetalert2';
 import Loader from '../../../Components/Loader';
-import { FaUser, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import Avatar from '../../../Components/Avatar';
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaCrown,
+  FaCheckCircle,
+  FaBirthdayCake,
+  FaRulerVertical,
+  FaWeight,
+  FaBriefcase,
+  FaVenusMars,
+  FaMapMarkerAlt,
+  FaUserEdit,
+  FaShareAlt,
+  FaUsers,
+} from 'react-icons/fa';
+
+// The fields we consider when computing "profile completeness" — mirrors
+// what a visitor actually sees on the public biodata card/detail page.
+const COMPLETENESS_FIELDS = [
+  'profileImage', 'name', 'dob', 'height', 'weight', 'occupation',
+  'fatherName', 'motherName', 'permanentDivision', 'presentDivision',
+  'mobile', 'expectedPartnerAge', 'expectedPartnerHeight',
+];
+
+const DetailRow = ({ icon, label, value }) => (
+  <div className="flex items-start gap-3 py-2">
+    <span className="text-gold mt-0.5 shrink-0">{icon}</span>
+    <div className="min-w-0">
+      <p className="text-xs text-gray-500 uppercase tracking-wide">{label}</p>
+      <p className="text-ink font-medium break-words">{value ?? '—'}</p>
+    </div>
+  </div>
+);
+
+const SectionCard = ({ title, children }) => (
+  <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
+    <h3 className="text-maroon font-semibold subtitle-font text-lg mb-3 pb-3 border-b border-gray-100">
+      {title}
+    </h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">{children}</div>
+  </div>
+);
 
 const ViewBiodata = () => {
-  const { user, biodata, isError, isLoading, authUser , refetchAuthUser } = useContext(AuthContext);
+  const { user, biodata, isError, isLoading, authUser, refetchAuthUser } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
+
+  const completeness = useMemo(() => {
+    if (!biodata) return 0;
+    const filled = COMPLETENESS_FIELDS.filter((key) => {
+      const value = biodata[key];
+      return value !== undefined && value !== null && value !== '';
+    }).length;
+    return Math.round((filled / COMPLETENESS_FIELDS.length) * 100);
+  }, [biodata]);
 
   const handlePremiumRequest = async (email) => {
     const confirm = await Swal.fire({
@@ -28,11 +80,11 @@ const ViewBiodata = () => {
           bioId: biodata.bioId,
         });
 
-       await refetchAuthUser()
+        await refetchAuthUser();
 
         Swal.fire('Sent!', 'Your request has been sent to the admin.', 'success');
         setIsModalOpen(false);
-      } catch (err) {
+      } catch {
         Swal.fire('Failed!', 'Something went wrong. Try again.', 'error');
       } finally {
         setIsSending(false);
@@ -40,117 +92,159 @@ const ViewBiodata = () => {
     }
   };
 
+  const handleShare = async () => {
+    const url = `${window.location.origin}/biodata/${biodata.bioId}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: `${biodata.name}'s Biodata`, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      Swal.fire({ title: 'Link copied!', text: url, icon: 'success', timer: 2000, showConfirmButton: false });
+    } catch {
+      // user cancelled the native share sheet — nothing to do
+    }
+  };
+
   if (isLoading) return <Loader />;
   if (isError || !biodata) return <p className="text-center py-10 text-red-500">Biodata not found.</p>;
 
   return (
-    <div className="px-4 lg:px-6 py-10 ">
-      <h2 className="text-4xl font-bold text-center text-ink mb-10">📋 View Biodata</h2>
+    <div className="px-3 sm:px-4 lg:px-6 py-8 max-w-6xl mx-auto">
+      {/* Profile header / cover */}
+      <div className="relative rounded-2xl overflow-hidden shadow-md mb-16 sm:mb-20">
+        <div className="h-28 sm:h-36 bg-gradient-to-r from-maroon to-maroon-dark" />
+        <div className="bg-white px-4 sm:px-8 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-4 -mt-14 sm:-mt-16">
+            <Avatar
+              src={biodata?.profileImage || user?.photoURL}
+              className="w-28 h-28 sm:w-32 sm:h-32 border-4 border-white shadow-lg mx-auto sm:mx-0 bg-gray-100"
+            />
+            <div className="flex-1 text-center sm:text-left pt-2 sm:pt-0">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h1 className="text-2xl sm:text-3xl font-bold text-ink subtitle-font">{biodata?.name}</h1>
+                {authUser?.isPremium && (
+                  <span className="inline-flex items-center gap-1 bg-gold/15 text-gold-dark text-xs font-semibold px-2.5 py-1 rounded-full">
+                    <FaCrown /> Premium
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1 bg-forest/10 text-forest text-xs font-semibold px-2.5 py-1 rounded-full">
+                  <FaCheckCircle /> Email Verified
+                </span>
+              </div>
+              <p className="text-gray-500 mt-1 text-sm sm:text-base">
+                {biodata?.age ? `${biodata.age} yrs` : ''}
+                {biodata?.height ? ` • ${biodata.height} ft` : ''}
+                {biodata?.occupation ? ` • ${biodata.occupation}` : ''}
+                {biodata?.presentDivision ? ` • ${biodata.presentDivision}` : ''}
+              </p>
+              <p className="text-xs text-gray-400 mt-1">Biodata ID: KMM-{biodata?.bioId}</p>
+            </div>
 
-      {/* Profile Section */}
-      <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-md p-4  flex flex-col md:flex-col lg:flex-row items-center gap-5  mb-10 border border-gray-200 transition duration-300 hover:shadow-xl overflow-hidden">
-        <div className="relative mb-4 lg:mb-0">
-          <img
-            src={biodata?.profileImage || user?.photoURL || '/default-avatar.png'}
-            alt="Profile"
-            className="w-32 lg:ml-10 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#C89B3C] shadow-md mx-auto"
-          />
-          <div className="absolute -bottom-2 right-0 bg-maroon text-white text-xs px-3 py-1 rounded-full shadow">
-            ID : {biodata?.bioId || 'BD-ID'}
+            <div className="flex sm:flex-col gap-2 justify-center pt-2 sm:pt-0">
+              <Link
+                to="/userDashboard/editbio"
+                className="flex items-center justify-center gap-2 bg-maroon hover:bg-maroon-dark text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+              >
+                <FaUserEdit /> Edit Profile
+              </Link>
+              <button
+                onClick={handleShare}
+                className="flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg transition"
+              >
+                <FaShareAlt /> Share
+              </button>
+            </div>
+          </div>
+
+          {/* Profile completeness */}
+          <div className="mt-6">
+            <div className="flex justify-between text-xs text-gray-500 mb-1">
+              <span>Profile Completeness</span>
+              <span className="font-semibold text-maroon">{completeness}%</span>
+            </div>
+            <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-gold to-maroon rounded-full transition-all"
+                style={{ width: `${completeness}%` }}
+              />
+            </div>
+            {completeness < 100 && (
+              <p className="text-xs text-gray-400 mt-1">
+                Complete your biodata to get better matches —{' '}
+                <Link to="/userDashboard/editbio" className="text-maroon hover:underline font-medium">
+                  update now
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </div>
-
-        <div className=" w-full flex lg:flex-row flex-col justify-evenly   text-ink break-words">
-        <div className='lg:space-y-3'>
-            <p className="flex gap-2 items-center">
-            <FaUser className="text-gold" />
-            <span className="font-semibold text-gray-600">Name:</span> {biodata?.name}
-          </p>
-           <p className="flex gap-2 items-center">
-            📅 <span className="font-semibold text-gray-600">Age:</span> {biodata?.age} years
-          </p>
-          
-          <p className="flex gap-2 items-center">
-            🎂 <span className="font-semibold text-gray-600">Date of Birth:</span> {biodata?.dob}
-          </p>
-        </div>
-         <div className='lg:space-y-3 '>
-          
-          <p className="flex gap-2 items-center">
-            🎯 <span className="font-semibold text-gray-600">Biodata Type:</span>
-            <span className="ml-1 inline-block bg-gold/10 text-maroon px-2 py-0.5 rounded-full text-sm font-medium">
-              {biodata?.biodataType}
-            </span>
-          </p>
-          <p className="flex gap-2 items-center">
-            🕵️‍♂️ <span className="font-semibold text-gray-600">Email:</span> {user?.email}
-          </p>
-          <p className="flex gap-2 items-center">
-            ⏰ <span className="font-semibold text-gray-600">Last Updated:</span>{' '}
-            {biodata?.updatedAt ? new Date(biodata.updatedAt).toLocaleDateString() : 'N/A'}
-          </p>
-         </div>
-        </div>
       </div>
 
-      {/* Divider */}
-      <div className="border-b my-6"></div>
+      {/* Detail sections */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <SectionCard title="Basic Details">
+          <DetailRow icon={<FaVenusMars />} label="Biodata Type" value={biodata?.biodataType} />
+          <DetailRow icon={<FaBirthdayCake />} label="Date of Birth" value={biodata?.dob} />
+          <DetailRow icon={<FaBirthdayCake />} label="Age" value={biodata?.age ? `${biodata.age} years` : null} />
+          <DetailRow icon={<FaRulerVertical />} label="Height" value={biodata?.height ? `${biodata.height} ft` : null} />
+          <DetailRow icon={<FaWeight />} label="Weight" value={biodata?.weight ? `${biodata.weight} kg` : null} />
+          <DetailRow icon={<FaBriefcase />} label="Profession" value={biodata?.occupation} />
+        </SectionCard>
 
-      {/* Main Biodata Info */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-700">
-        <div>
-          <p className="font-semibold mb-1">👤 Personal Info</p>
-          <p>Height: {biodata?.height} ft</p>
-          <p>Weight: {biodata?.weight} kg</p>
-          <p>Occupation: {biodata?.occupation}</p>
-          <p>Race: {biodata?.race}</p>
+        <SectionCard title="Family Details">
+          <DetailRow icon={<FaUsers />} label="Father's Name" value={biodata?.fatherName} />
+          <DetailRow icon={<FaUsers />} label="Mother's Name" value={biodata?.motherName} />
+          <DetailRow icon={<FaUsers />} label="Race / Community" value={biodata?.race} />
+        </SectionCard>
+
+        <SectionCard title="Location Details">
+          <DetailRow icon={<FaMapMarkerAlt />} label="Permanent District" value={biodata?.permanentDivision} />
+          <DetailRow icon={<FaMapMarkerAlt />} label="Current District" value={biodata?.presentDivision} />
+        </SectionCard>
+
+        <SectionCard title="Partner Preferences">
+          <DetailRow icon={<FaBirthdayCake />} label="Preferred Age" value={biodata?.expectedPartnerAge} />
+          <DetailRow icon={<FaRulerVertical />} label="Preferred Height" value={biodata?.expectedPartnerHeight ? `${biodata.expectedPartnerHeight} ft` : null} />
+          <DetailRow icon={<FaWeight />} label="Preferred Weight" value={biodata?.expectedPartnerWeight ? `${biodata.expectedPartnerWeight} kg` : null} />
+        </SectionCard>
+
+        <SectionCard title="Contact Details">
+          <DetailRow icon={<FaEnvelope />} label="Email" value={biodata?.email || user?.email} />
+          <DetailRow icon={<FaPhoneAlt />} label="Mobile" value={biodata?.mobile} />
+        </SectionCard>
+
+        {/* Premium status / upgrade */}
+        <div className="bg-gradient-to-br from-maroon to-maroon-dark rounded-2xl shadow-sm p-6 flex flex-col justify-center items-center text-center text-white">
+          {authUser?.isPremium ? (
+            <>
+              <FaCrown className="text-gold text-3xl mb-2" />
+              <p className="font-semibold text-lg">You're a Premium Member</p>
+              <p className="text-white/70 text-sm mt-1">
+                Plan: {authUser?.premiumPlan || 'Basic'}
+              </p>
+            </>
+          ) : authUser?.premiumRequest ? (
+            <>
+              <FaCrown className="text-gold/70 text-3xl mb-2" />
+              <p className="font-semibold text-lg">Premium Request Pending</p>
+              <p className="text-white/70 text-sm mt-1">Our team will review it shortly.</p>
+            </>
+          ) : (
+            <>
+              <FaCrown className="text-gold text-3xl mb-2" />
+              <p className="font-semibold text-lg">Go Premium</p>
+              <p className="text-white/70 text-sm mt-1 mb-4">Get more visibility and unlock priority support.</p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-5 py-2 bg-gold hover:bg-gold-dark text-ink font-semibold rounded-lg transition"
+              >
+                Request Premium
+              </button>
+            </>
+          )}
         </div>
-
-        <div>
-          <p className="font-semibold mb-1">👪 Family Info</p>
-          <p>Father's Name: {biodata?.fatherName}</p>
-          <p>Mother's Name: {biodata?.motherName}</p>
-          <p>Permanent Division: {biodata?.permanentDivision}</p>
-          <p>Present Division: {biodata?.presentDivision}</p>
-        </div>
-
-        <div>
-          <p className="font-semibold mb-1">❤️ Partner Preference</p>
-          <p>Expected Age: {biodata?.expectedPartnerAge}</p>
-          <p>Expected Height: {biodata?.expectedPartnerHeight} ft</p>
-          <p>Expected Weight: {biodata?.expectedPartnerWeight} kg</p>
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div className="border-b my-6"></div>
-
-      {/* Contact Info */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-        <div className="flex items-center text-[15px] gap-2">
-          <FaEnvelope className="text-gold" />
-          <span className="font-semibold">Email:</span> {biodata?.email}
-        </div>
-        <div className="flex items-center gap-3">
-          <FaPhoneAlt className="text-gold" />
-          <span className="font-semibold">Mobile:</span> {biodata?.mobile}
-        </div>
-      </div>
-
-      {/* Premium Status */}
-      <div className="text-center pt-10">
-        {authUser?.isPremium ? (
-          <p className="text-green-600 font-bold text-lg">✅ This is a Premium Biodata</p>
-        ) : authUser?.premiumRequest ? (
-          <p className="text-yellow-600 font-semibold text-lg">⏳ Premium request already sent</p>
-        ) : (
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="px-6 py-3 bg-gradient-to-r from-maroon to-gold text-white font-semibold rounded-xl shadow hover:opacity-90 transition"
-          >
-            Make Biodata Premium
-          </button>
-        )}
       </div>
 
       {/* Modal */}

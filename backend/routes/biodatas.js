@@ -3,13 +3,15 @@ import Biodata from "../models/Biodata.js";
 
 const router = express.Router();
 
-// GET /biodatas -> everyone's biodata (public listing + admin stats)
+// GET /biodatas -> public listing. Archived/blacklisted profiles (set from
+// /admin) are excluded so a moderation action is instantly reflected here.
 router.get("/biodatas", async (req, res) => {
-  const biodatas = await Biodata.find();
+  const biodatas = await Biodata.find({ status: "active" });
   res.send(biodatas);
 });
 
-// GET /biodata?email= -> the logged-in user's own biodata
+// GET /biodata?email= -> the logged-in user's own biodata, regardless of
+// moderation status, so an archived/blacklisted owner can still see their profile.
 router.get("/biodata", async (req, res) => {
   const { email } = req.query;
   if (!email) return res.status(400).json({ success: false, message: "email query param is required" });
@@ -19,10 +21,11 @@ router.get("/biodata", async (req, res) => {
   res.send({ success: true, data: biodata });
 });
 
-// GET /biodatabyid/:biodataId -> single biodata by its public bioId number
+// GET /biodatabyid/:biodataId -> single biodata by its public bioId number.
+// Hidden (404) once archived/blacklisted, so a shared link stops resolving too.
 router.get("/biodatabyid/:biodataId", async (req, res) => {
   const bioId = Number(req.params.biodataId);
-  const biodata = await Biodata.findOne({ bioId });
+  const biodata = await Biodata.findOne({ bioId, status: "active" });
   if (!biodata) return res.status(404).send({ message: "Biodata not found" });
   res.send(biodata);
 });

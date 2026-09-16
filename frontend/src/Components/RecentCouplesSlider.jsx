@@ -53,9 +53,12 @@ const {successStories} = useDashboardStats();
 
   return (
     <div className="py-32 ">
-       <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold text-center ">collections</h4>
-      <h2 className="text-center text-3xl sm:text-4xl font-bold subtitle-font  text-[#2B211C] mt-2 ">Photo gallery</h2>
-      <img src="/flower.png" alt="" className="w-50 mx-auto mb-16" />
+       <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold text-center ">CELEBRATING CONNECTIONS</h4>
+      <h2 className="text-center text-3xl sm:text-4xl font-bold subtitle-font  text-[#2B211C] mt-2 ">Malayalee Stories, New Beginnings</h2>
+      <p className="text-gray-500 mt-3 max-w-xl mx-auto text-center px-4">
+        Every journey is unique. Discover stories shared by couples who found a meaningful connection through matrimony.
+      </p>
+      <img src="/flower.png" alt="" className="w-50 mx-auto mb-16 mt-4" />
       <div className="relative px-4 ">
         <Slider {...settings}>
           {successStories.map((couple) => (

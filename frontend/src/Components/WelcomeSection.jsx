@@ -1,20 +1,10 @@
 import React from "react";
-import { FaPhoneAlt, FaHeart, FaUsers, FaMale, FaFemale } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router";
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
-import { useDashboardStats } from "../Utils/Utils";
 
 
 const WelcomeSection = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
-
-  const { stats, loading } = useDashboardStats();
-
   return (
     <div className="px-5 py-16">
       {/* Top Section */}
@@ -37,13 +27,13 @@ const WelcomeSection = () => {
         <div className="w-full lg:w-1/2 text-start md:text-left">
           <h2 className="text-4xl font-bold text-[#A67C2E] mb-2 subtitle-font">WELCOME TO</h2>
           <h3 className="text-3xl text-maroon font-semibold mb-4 subtitle-font">
-            WEDDING MATRIMONY
+            KAIRALI MATCH MAKERS
           </h3>
           <p className="text-gray-600 mb-3 poppins">
-            Your journey to a happy and meaningful marriage begins here. In the world of endless possibilities, we make it easy for you to connect with genuine, compatible partners. Our platform is trusted, secure, and designed to make your wedding dreams come true.
+            Your search for a meaningful life partner begins here. At Kairali Match Makers, we bring together Malayalees and Kerala-origin families looking for meaningful matrimonial relationships. Whether you are from Kerala, living elsewhere in India or part of the global Malayalee community, our platform helps you discover profiles that match your preferences and expectations.
             <br />
             <Link to="/loginpage">
-              Start your matrimonial journey today  
+              Start your matrimonial journey today
               <span className="text-maroon font-medium underline cursor-pointer poppins mx-1">
                 click here
               </span>
@@ -52,7 +42,7 @@ const WelcomeSection = () => {
           </p>
           <hr className="my-4" />
           <p className="text-gray-600 mb-4 poppins">
-            While many websites may appear similar, we stand apart. Unlike generic content that lacks substance, our platform is built on trust, authenticity, and real success stories. Say goodbye to randomness and hello to a truly heartfelt experience.
+            Marriage is more than finding a profile. It is about finding someone whose values, aspirations and family outlook complement your own. We aim to make that journey more personal, respectful and convenient.
           </p>
 
           {/* Contact Info */}
@@ -70,52 +60,6 @@ const WelcomeSection = () => {
               <span>info@example.com</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Dynamic Stats Section */}
-      <div
-        ref={ref}
-        className="max-w-screen-xl mx-auto lg:px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 mt-32 *:pt-6 *:h-[150px] *:md:h-[130px] text-center"
-      >
-        <div className="text-xl border md:border-l-0 p-6">
-          <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaHeart className="text-maroon" size={30} />
-            <span className="subtitle-font text-2xl">
-              {inView && !loading && <CountUp end={stats.marriageCount} duration={2} suffix="+" />}
-            </span>
-          </div>
-          <p className="text-gray-600 mt-1 uppercase">total  marriages </p>
-        </div>
-
-        <div className="text-xl border md:border-l-0 p-6">
-          <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaUsers className="text-gold-dark" size={30} />
-            <span className="subtitle-font text-2xl">
-              {inView && !loading && <CountUp end={stats.totalBiodata} duration={2.5} suffix="+" />}
-            </span>
-          </div>
-          <p className="text-gray-600 mt-1 uppercase">total Biodata</p>
-        </div>
-
-        <div className="text-xl border md:border-l-0 p-6">
-          <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaMale className="text-forest" size={30} />
-            <span className="subtitle-font text-2xl">
-              {inView && !loading && <CountUp end={stats.maleBiodata} duration={2} suffix="+" />}
-            </span>
-          </div>
-          <p className="text-gray-600 mt-1">MEN</p>
-        </div>
-
-        <div className="text-xl border md:border-l-0 md:border-r-0 p-6">
-          <div className="flex items-center justify-center gap-2 font-semibold">
-            <FaFemale className="text-gold" size={30} />
-            <span className="subtitle-font text-2xl">
-              {inView && !loading && <CountUp end={stats.femaleBiodata} duration={2} suffix="+" />}
-            </span>
-          </div>
-          <p className="text-gray-600 mt-1">WOMEN</p>
         </div>
       </div>
     </div>

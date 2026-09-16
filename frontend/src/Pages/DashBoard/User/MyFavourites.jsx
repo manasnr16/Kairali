@@ -43,7 +43,7 @@ const MyFavouritesBiodata = () => {
   return (
     <div className="px-2 lg:px-8 py-6">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">
-        My Favourite Biodatas
+        Shortlisted Profiles
       </h2>
 
       {isLoading ? (
@@ -51,7 +51,10 @@ const MyFavouritesBiodata = () => {
       ) : isError ? (
         <p className="text-center text-red-500">Failed to load data.</p>
       ) : favourites.length === 0 ? (
-        <div className="text-gray-500 mt-10 text-center">No favourite biodatas found.</div>
+        <div className="text-gray-500 mt-10 text-center">
+          Your shortlist is empty.
+          <p className="text-sm mt-1">Explore Malayalee profiles and save the ones you'd like to revisit.</p>
+        </div>
       ) : (
         <>
           {/* Table for md and up */}
@@ -61,8 +64,8 @@ const MyFavouritesBiodata = () => {
                 <tr className="text-center">
                   <th className="px-2 py-3 text-sm font-semibold">Name</th>
                   <th className="px-2 py-3 text-sm font-semibold">Biodata ID</th>
-                  <th className="px-2 py-3 text-sm font-semibold">Address</th>
-                  <th className="px-2 py-3 text-sm font-semibold">Occupation</th>
+                  <th className="px-2 py-3 text-sm font-semibold">District</th>
+                  <th className="px-2 py-3 text-sm font-semibold">Profession</th>
                   <th className="px-2 py-3 text-sm font-semibold">Action</th>
                 </tr>
               </thead>
@@ -98,10 +101,10 @@ const MyFavouritesBiodata = () => {
                   <span className="font-semibold">Biodata ID:</span> {bio.bioId}
                 </p>
                 <p className="text-sm">
-                  <span className="font-semibold">Address:</span> {bio.presentDivision}
+                  <span className="font-semibold">District:</span> {bio.presentDivision}
                 </p>
                 <p className="text-sm mb-2">
-                  <span className="font-semibold">Occupation:</span> {bio.occupation}
+                  <span className="font-semibold">Profession:</span> {bio.occupation}
                 </p>
                 <button
                   onClick={() => handleDelete(bio._id)}

@@ -6,7 +6,7 @@ import OurServices from '../Components/OurSevices';
 import HowItWorks from '../Components/HowItWorks';
 import WelcomeSection from '../Components/WelcomeSection';
 import TrustedSection from '../Components/TrustedSection';
-import SuccessStory from '../Components/SuccessStory';
+import CoupleTestimonials from '../Components/CoupleTestimonials';
 import RecentCouplesSlider from '../Components/RecentCouplesSlider';
 
 
@@ -20,7 +20,7 @@ const HomePage = () => {
             <WelcomeSection></WelcomeSection>
             <TrustedSection></TrustedSection>
             <RecentCouplesSlider></RecentCouplesSlider>
-            <SuccessStory></SuccessStory>
+            <CoupleTestimonials></CoupleTestimonials>
         </div>
     );
 };

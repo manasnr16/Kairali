@@ -8,28 +8,28 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const testimonials = [
   {
-    name: 'JACK DANIAL',
-    location: 'New York',
+    name: 'ANJALI MENON',
+    location: 'Kochi',
     image: 'https://i.ibb.co/sJDVfgFb/9.jpg',
-    text: 'We found our perfect match within a few weeks. The platform is truly made for serious relationships!',
+    text: 'Kairali Match Makers helped us find a genuine connection built on shared values and understanding.',
   },
   {
-    name: 'SOPHIA RICHARDS',
-    location: 'California',
+    name: 'ARUN NAIR',
+    location: 'Dubai',
     image: 'https://i.ibb.co/VYBxmLRb/8.jpg',
-    text: 'I loved how easy it was to navigate and connect with genuine profiles. Thank you for helping me find love!',
+    text: 'Even while living abroad, I stayed connected to my roots and found someone who understood my background.',
   },
   {
-    name: 'MAYA THOMSON',
-    location: 'Texas',
+    name: 'MEERA PILLAI',
+    location: 'Thrissur',
     image: 'https://i.ibb.co/WN3Pxs9Q/7.jpg',
-    text: 'I never thought I’d meet someone online, but this matrimony site changed my life. Highly recommended!',
+    text: 'The experience felt warm and respectful, much like being introduced through family.',
   },
   {
-    name: 'RAHUL VERMA',
-    location: 'New Jersey',
+    name: 'VISHNU KARTHA',
+    location: 'Bengaluru',
     image: 'https://i.ibb.co/v4Zhqvn6/6.jpg',
-    text: 'Very professional and secure platform. The verification process gave me a lot of confidence.',
+    text: 'A thoughtful platform that made it easy to find someone who shares my values and outlook.',
   },
 ];
 
@@ -87,10 +87,13 @@ const TrustedSection = () => {
   return (
     <section className="py-16 mt-12">
       <div className="text-center mb-10 px-4 sm:px-6 lg:px-8">
-        <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold">TRUSTED BRAND</h4>
+        <h4 className="text-lg text-[#A67C2E] tracking-widest subtitle-font font-semibold">BUILT ON TRUST</h4>
         <h2 className="text-3xl sm:text-4xl font-bold subtitle-font  text-[#2B211C] mt-2">
-          Trust by <span className="text-5xl font-extrabold">2500+</span> Couples
+          Meaningful Connections Begin With <span className="text-5xl font-extrabold">Trust</span>
         </h2>
+        <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+          We believe matrimonial relationships should begin with authenticity, respect and genuine intentions.
+        </p>
         <div className="flex justify-center mt-4">
           <img src="/flower.png" alt="decor" className="w-52" />
         </div>

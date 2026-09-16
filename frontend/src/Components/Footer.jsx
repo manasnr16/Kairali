@@ -16,8 +16,8 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-300">
-              A premium matrimony platform for Malayalee families — built on
-              trust, verified profiles, and genuine intent.
+              A premium matrimony platform for Malayalees and Kerala-origin families —
+              built around trust, respect and genuine intent.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -31,10 +31,13 @@ const Footer = () => {
                   <Link to="/" className="hover:underline hover:text-gold transition-colors">How It Works</Link>
                 </li>
                 <li className="mb-4">
+                  <Link to="/biodataspage" className="hover:underline hover:text-gold transition-colors">Find Matches</Link>
+                </li>
+                <li className="mb-4">
                   <Link to="/blog" className="hover:underline hover:text-gold transition-colors">Success Stories</Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="hover:underline hover:text-gold transition-colors">Contact</Link>
+                  <Link to="/contact" className="hover:underline hover:text-gold transition-colors">Contact Us</Link>
                 </li>
               </ul>
             </div>

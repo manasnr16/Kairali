@@ -4,6 +4,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -21,6 +22,13 @@ const imgbbApiKey =  import.meta.env.VITE_IMGBB_API_KEY;
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // Tracks only "has Firebase told us the initial auth state yet?" — this is
+  // what route guards (PrivateRoute/PrivateAdmin) should gate on. `loading`
+  // above is also reused as a per-action busy flag by CreateUser/LoginUser/
+  // etc., and those only clear it on success; a single failed login before
+  // this component ever mounted again would otherwise wedge every protected
+  // route behind an infinite spinner even though auth itself resolved fine.
+  const [authChecked, setAuthChecked] = useState(false);
 
   // 🖼️ Image Upload State
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
@@ -87,9 +95,17 @@ const AuthProvider = ({ children }) => {
   };
 
   // ✅ Firebase Auth Methods
+  // Each of these clears `loading` again on failure — success is already
+  // covered by the onAuthStateChanged listener below, but a rejected
+  // promise here never reaches that listener, so without this `loading`
+  // would stay stuck true (see the `authChecked` note above for why route
+  // guards no longer depend on this flag at all, but other UI still might).
   const CreateUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).catch((error) => {
+      setLoading(false);
+      throw error;
+    });
   };
 
   const UpdateUserProfile = (profile) => {
@@ -98,22 +114,59 @@ const AuthProvider = ({ children }) => {
 
   const LoginUser = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      setLoading(false);
+      throw error;
+    });
   };
 
   const LogOut = () => {
     setLoading(true);
-    return signOut(auth);
+    return signOut(auth).catch((error) => {
+      setLoading(false);
+      throw error;
+    });
   };
 
-  const SigninWithGoogle = (provider) => {
+  // Popups are blocked outright (or silently force-closed within
+  // milliseconds by a strict Cross-Origin-Opener-Policy) in a lot of
+  // sandboxed/embedded dev environments and some browsers — that used to
+  // fail with no visible feedback and leave `loading` stuck true forever.
+  // This now falls back to a full-page redirect when that happens, and
+  // always resets `loading` so a failed attempt doesn't wedge the app.
+  const SigninWithGoogle = async (provider) => {
     setLoading(true);
-    return signInWithPopup(auth, provider);
+    const startedAt = Date.now();
+
+    try {
+      return await signInWithPopup(auth, provider);
+    } catch (error) {
+      const elapsed = Date.now() - startedAt;
+      const shouldFallBackToRedirect =
+        error.code === "auth/popup-blocked" ||
+        error.code === "auth/cancelled-popup-request" ||
+        error.code === "auth/operation-not-supported-in-this-environment" ||
+        // A "closed by user" that fires almost instantly is very rarely a
+        // real click — it's usually the browser/COOP policy tearing the
+        // popup down before the user could ever interact with it.
+        (error.code === "auth/popup-closed-by-user" && elapsed < 1500);
+
+      if (shouldFallBackToRedirect) {
+        await signInWithRedirect(auth, provider);
+        return null; // the browser is navigating away; nothing left to do here
+      }
+
+      setLoading(false);
+      throw error;
+    }
   };
 
   const PasswordReset = (email) => {
     setLoading(true);
-    return sendPasswordResetEmail(auth, email);
+    return sendPasswordResetEmail(auth, email).catch((error) => {
+      setLoading(false);
+      throw error;
+    });
   };
 
  useEffect(() => {
@@ -124,6 +177,7 @@ const AuthProvider = ({ children }) => {
       setUser(null);
     }
     setLoading(false);
+    setAuthChecked(true);
   });
 
   return () => unsubscribe();
@@ -190,6 +244,7 @@ const AuthProvider = ({ children }) => {
     ErrorTost,
     loading,
     setLoading,
+    authChecked,
     PasswordReset,
 
     // 🖼️ Image upload values

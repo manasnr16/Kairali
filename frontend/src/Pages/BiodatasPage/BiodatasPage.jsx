@@ -72,7 +72,7 @@ const BiodatasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Filter Section */}
                 <div className="bg-white p-4 mt-2 rounded shadow">
-                    <h2 className="text-2xl uppercase mb-4 font-semibold text-center">Filter Biodata</h2>
+                    <h2 className="text-2xl uppercase mb-4 font-semibold text-center">Filter Profiles</h2>
 
                     <label>Age Range: {tempFilters.ageRange[0]} - {tempFilters.ageRange[1]}</label>
                     <input
@@ -98,7 +98,7 @@ const BiodatasPage = () => {
                         className="w-full mb-4"
                     />
 
-                    <label>Biodata Type</label>
+                    <label>Profile Type</label>
                     <select
                         value={tempFilters.biodataType}
                         onChange={e => setTempFilters(f => ({ ...f, biodataType: e.target.value }))}
@@ -109,20 +109,27 @@ const BiodatasPage = () => {
                         <option value="female">Female</option>
                     </select>
 
-                    <label>Division</label>
+                    <label>District</label>
                     <select
                         value={tempFilters.division}
                         onChange={e => setTempFilters(f => ({ ...f, division: e.target.value }))}
                         className="w-full mb-4 border rounded p-2"
                     >
-                        <option value="">All Divisions</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chattagra">Chattagra</option>
-                        <option value="rangpur">Rangpur</option>
-                        <option value="barisal">Barisal</option>
-                        <option value="khulna">Khulna</option>
-                        <option value="mymensingh">Mymensingh</option>
-                        <option value="sylhet">Sylhet</option>
+                        <option value="">All Districts</option>
+                        <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                        <option value="kollam">Kollam</option>
+                        <option value="pathanamthitta">Pathanamthitta</option>
+                        <option value="alappuzha">Alappuzha</option>
+                        <option value="kottayam">Kottayam</option>
+                        <option value="idukki">Idukki</option>
+                        <option value="ernakulam">Ernakulam</option>
+                        <option value="thrissur">Thrissur</option>
+                        <option value="palakkad">Palakkad</option>
+                        <option value="malappuram">Malappuram</option>
+                        <option value="kozhikode">Kozhikode</option>
+                        <option value="wayanad">Wayanad</option>
+                        <option value="kannur">Kannur</option>
+                        <option value="kasaragod">Kasaragod</option>
                     </select>
 
                     <button
@@ -135,13 +142,18 @@ const BiodatasPage = () => {
 
                 {/* Biodata Listing */}
                 <div className="md:col-span-2 space-y-4">
-                    <h1 className=' border-b-2 pb-4 border-gold uppercase text-xl font-semibold'>total biodata 
+                    <h1 className=' border-b-2 pb-4 border-gold uppercase text-xl font-semibold'>find your malayalee match
                          <span className='text-maroon text-2xl subtitle-font'> {allBiodata.length}</span></h1>
                     {isLoading ? (
                         <Loader></Loader>
                     ) : (
                         paginatedBiodata.length === 0 ? (
-                            <div className="text-center text-red-500 text-xl">No biodata found.</div>
+                            <div className="text-center text-red-500 text-xl">
+                                No matrimonial profiles found.
+                                <p className="text-gray-400 text-sm mt-2">
+                                    Try adjusting your search preferences to discover more matches.
+                                </p>
+                            </div>
                         ) : (
                             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4'>
                                 {

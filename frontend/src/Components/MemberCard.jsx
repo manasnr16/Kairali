@@ -17,7 +17,7 @@ const MemberCard = ({ member }) => {
       <h3 className="text-lg font-bold mt-2">{member.name}</h3>
       <p className="text-maroon">{member.biodataType}</p>
       <p>Age: {member.age}</p>
-      <p>Division: {member.presentDivision}</p>
+      <p>District: {member.presentDivision}</p>
       <p>Occupation: {member.occupation}</p>
 
       <div>

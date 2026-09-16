@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     role: { type: String, enum: ["user", "admin"], default: "user" },
     isPremium: { type: Boolean, default: false },
     premiumRequest: { type: Boolean, default: false },
+    premiumPlan: { type: String, enum: ["Basic", "Gold", "Platinum", null], default: null },
     bioId: { type: Number, default: null },
   },
   { timestamps: true, strict: false }

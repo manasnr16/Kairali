@@ -1,5 +1,9 @@
 import express from "express";
 import User from "../models/User.js";
+import Otp from "../models/Otp.js";
+import PremiumMember from "../models/PremiumMember.js";
+
+const PLAN_TYPES = ["Basic", "Gold", "Platinum"];
 
 const router = express.Router();
 
@@ -37,14 +41,23 @@ router.get("/requestedpremiumuser", async (req, res) => {
 });
 
 // POST /users -> create a user record on signup (idempotent by email)
+// Skips the OTP check for Google sign-in, whose email is already verified by Firebase.
 router.post("/users", async (req, res) => {
-  const { email } = req.body;
+  const { email, authProvider } = req.body;
   if (!email) return res.status(400).json({ message: "email is required" });
 
   const existing = await User.findOne({ email });
   if (existing) return res.send(existing);
 
+  if (authProvider !== "google") {
+    const verifiedOtp = await Otp.findOne({ email, purpose: "register", verified: true });
+    if (!verifiedOtp) {
+      return res.status(403).json({ message: "Please verify your email with the OTP before registering" });
+    }
+  }
+
   const user = await User.create(req.body);
+  await Otp.deleteMany({ email, purpose: "register" });
   res.status(201).send(user);
 });
 
@@ -57,13 +70,27 @@ router.patch("/make-admin/:email", async (req, res) => {
   res.send(result);
 });
 
-// PATCH /make-premium/:email  -> approve a premium request
+// PATCH /make-premium/:email  -> approve a premium request, assigning a plan tier
 router.patch("/make-premium/:email", async (req, res) => {
-  const result = await User.updateOne(
+  const planType = PLAN_TYPES.includes(req.body?.planType) ? req.body.planType : "Basic";
+
+  const user = await User.findOneAndUpdate(
     { email: req.params.email },
-    { $set: { isPremium: true, premiumRequest: false } }
+    { $set: { isPremium: true, premiumRequest: false, premiumPlan: planType } },
+    { new: true }
   );
-  res.send(result);
+
+  if (!user) return res.status(404).json({ message: "User not found" });
+
+  if (user.bioId) {
+    await PremiumMember.findOneAndUpdate(
+      { bioId: user.bioId },
+      { $set: { bioId: user.bioId, email: user.email, planType } },
+      { upsert: true, new: true }
+    );
+  }
+
+  res.send(user);
 });
 
 // PATCH /update-user-name/:email

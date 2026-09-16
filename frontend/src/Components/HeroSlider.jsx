@@ -38,13 +38,13 @@ const HeroSlider = () => {
         {/* Text */}
         <div className="text-white mb-8 mt-32 md:mt-20 max-w-[95vw]">
           <p className="text-[12px] md:text-base tracking-widest poppins">
-            #1 Matrimony Service
+            KERALA'S MALAYALEE MATRIMONY
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold subtitle-font break-words">
             Meet Your <span className="text-maroon">Life Partner</span>
           </h1>
           <p className="mt-2 text-sm w-10/12 mx-auto md:text-lg poppins">
-            Trusted by thousands for meaningful and lifelong relationships.
+            Discover meaningful matrimonial connections among Malayalees from Kerala, across India and around the world.
           </p>
         </div>
 
@@ -65,20 +65,22 @@ const HeroSlider = () => {
             </select>
             <select className="px-3 py-2 rounded text-black w-full">
               <option>Religion</option>
-              <option>Islam</option>
-              <option>Hinduism</option>
-              <option>Christianity</option>
-              <option>Buddhism</option>
+              <option>Hindu</option>
+              <option>Christian</option>
+              <option>Muslim</option>
+              <option>Other</option>
             </select>
             <select className="px-3 py-2 rounded text-black w-full">
               <option>Location</option>
-              <option>Dhaka</option>
-              <option>Chattogram</option>
-              <option>Khulna</option>
+              <option>Kerala</option>
+              <option>Kochi</option>
+              <option>Thiruvananthapuram</option>
+              <option>Kozhikode</option>
+              <option>Thrissur</option>
             </select>
             <Link to="/biodataspage">
               <button className="bg-maroon hover:bg-maroon-dark py-2 text-white font-semibold rounded w-full">
-                Search
+                Find Your Match
               </button>
             </Link>
           </form>

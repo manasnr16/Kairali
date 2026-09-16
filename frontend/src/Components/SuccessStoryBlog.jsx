@@ -20,9 +20,9 @@ const SuccessStoryBlog = () => {
             <div className="">
                 <div className="text-center mb-12">
                     <h4 className="text-[#A67C2E] text-sm font-bold uppercase tracking-wide mb-2">Success Stories</h4>
-                    <h2 className="text-4xl font-extrabold text-ink subtitle-font font-serif">Real Love Stories</h2>
+                    <h2 className="text-4xl font-extrabold text-ink subtitle-font font-serif">Malayalee Journeys, Beautiful Beginnings</h2>
                     <p className="text-gray-500 mt-3 max-w-xl mx-auto">
-                        Discover inspiring journeys of couples who found their life partners through our platform.
+                        Discover inspiring stories of connection, understanding and new beginnings from the Kairali Match Makers community.
                     </p>
                     <img src="/flower.png" alt="flower" className="w-40 mx-auto mt-4" />
                 </div>

@@ -10,10 +10,10 @@ import Loader from '../Components/Loader2';
 
 const PrivateRoute = ({ children }) => {
     
-    const { user , loading   } = useContext(AuthContext);
+    const { user , authChecked   } = useContext(AuthContext);
 
     const location = useLocation();
-    if(loading){
+    if(!authChecked){
         return <Loader/>
    }
     if(user){

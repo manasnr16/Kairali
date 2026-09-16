@@ -1,6 +1,6 @@
-# Rishta Matrimony — Backend API
+# Kairali Match Makers — Backend API
 
-Express + MongoDB backend for the [Rishta-Matrimony](../Rishta-Matrimony) frontend.
+Express + MongoDB backend for the [Kairali Match Makers](../frontend) frontend.
 
 ## Setup
 

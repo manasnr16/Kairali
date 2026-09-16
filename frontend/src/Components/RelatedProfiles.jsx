@@ -86,7 +86,7 @@ const RelatedProfiles = () => {
                 <div className="bg-white py-3 text-center shadow mt-[-20px] relative z-10 mx-4 rounded-lg">
                   <p className="font-semibold text-maroon-dark text-base lowercase">{profile.name}</p>
                   <p className="text-sm text-gray-600 uppercase">
-                    City: {profile.presentDivision}
+                    District: {profile.presentDivision}
                   </p>
                 </div>
               </div>

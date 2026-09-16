@@ -32,11 +32,14 @@ const PremiumMembers = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <div>
             <h4 className="text-[#A67C2E] text-lg subtitle-font font-bold text-center md:text-start">
-              Quick Access
+              Featured Profiles
             </h4>
             <h2 className="text-3xl lg:text-4xl text-[#A67C2E] text-center md:text-start font-bold subtitle-font">
               Premium Members
             </h2>
+            <p className="text-gray-500 mt-2 text-center md:text-start">
+              Explore selected matrimonial profiles from the Malayalee community.
+            </p>
           </div>
           <img src="/flower.png" alt="" className="w-50 md:hidden" />
 

@@ -12,7 +12,7 @@ const TopBar = () => {
           </span>
           <span className="flex items-center gap-1">
             <span className="text-lg">✉️</span>
-            <span>help@rishta.com</span>
+            <span>help@kairalimatchmakers.com</span>
           </span>
         </div>
 

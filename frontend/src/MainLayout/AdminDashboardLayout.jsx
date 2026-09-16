@@ -12,6 +12,7 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { AuthContext } from "../Contex/AuthProvider";
+import Avatar from "../Components/Avatar";
 import Swal from "sweetalert2";
 
 const AdminDashboardLayout = () => {
@@ -142,7 +143,7 @@ const AdminDashboardLayout = () => {
               <FaChevronRight className="mt-2" />
               <NavLink to="/contact">Contact</NavLink>
             </div>
-            <img src={biodata?.profileImage || user?.photoURL} alt="User" className="w-10 h-10 border-2 border-gold  rounded-full" />
+            <Avatar src={biodata?.profileImage || user?.photoURL} className="w-10 h-10 border-2 border-gold" />
           </div>
           <Outlet />
         </main>
