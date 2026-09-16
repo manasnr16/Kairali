@@ -1,4 +1,4 @@
-# Rishta Matrimony (Kairali Match Makers)
+# Kairali Match Makers
 
 A matrimony platform, split into two independent projects:
 
