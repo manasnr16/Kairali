@@ -62,10 +62,11 @@ const Navbar = () => {
   const primaryLinks = (
     <>
       <NavLink to="/" onClick={handleLinkClick} className="block  py-2 hover:text-maroon">Home</NavLink>
-      <NavLink to="/about" onClick={handleLinkClick} className="block  py-2 hover:text-maroon">About Us</NavLink>
       <NavLink to="/biodataspage" onClick={handleLinkClick} className="block  py-2 hover:text-maroon">Find Matches</NavLink>
-      <NavLink to="/contact" onClick={handleLinkClick} className="block py-2 hover:text-maroon">Contact</NavLink>
+      <NavLink to="/#featured-profiles" onClick={handleLinkClick} className="block  py-2 hover:text-maroon">Featured Profiles</NavLink>
       <NavLink to="/blog" onClick={handleLinkClick} className="block py-2 hover:text-maroon">Success Stories</NavLink>
+      <NavLink to="/about" onClick={handleLinkClick} className="block  py-2 hover:text-maroon">About Us</NavLink>
+      <NavLink to="/contact" onClick={handleLinkClick} className="block py-2 hover:text-maroon">Contact</NavLink>
     </>
   );
 

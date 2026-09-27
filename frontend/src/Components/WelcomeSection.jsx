@@ -8,7 +8,7 @@ const WelcomeSection = () => {
   return (
     <div className="px-5 py-16">
       {/* Top Section */}
-      <div className="max-w-screen-xl mx-auto lg:px-4 flex flex-col md:flex-row gap-10">
+      <div className="max-w-screen-xl mx-auto lg:px-4 flex flex-col md:flex-row md:items-center gap-10">
         {/* Image Section */}
         <div className="relative w-full md:w-1/2 hidden md:flex">
           <img
@@ -29,7 +29,7 @@ const WelcomeSection = () => {
           <h3 className="text-3xl text-maroon font-semibold mb-4 subtitle-font">
             KAIRALI MATCH MAKERS
           </h3>
-          <p className="text-gray-600 mb-3 poppins">
+          <p className="text-gray-600 mb-4 poppins">
             Your search for a meaningful life partner begins here. At Kairali Match Makers, we bring together Malayalees and Kerala-origin families looking for meaningful matrimonial relationships. Whether you are from Kerala, living elsewhere in India or part of the global Malayalee community, our platform helps you discover profiles that match your preferences and expectations.
             <br />
             <Link to="/loginpage">
@@ -39,10 +39,6 @@ const WelcomeSection = () => {
               </span>
             </Link>{" "}
             to begin!
-          </p>
-          <hr className="my-4" />
-          <p className="text-gray-600 mb-4 poppins">
-            Marriage is more than finding a profile. It is about finding someone whose values, aspirations and family outlook complement your own. We aim to make that journey more personal, respectful and convenient.
           </p>
 
           {/* Contact Info */}

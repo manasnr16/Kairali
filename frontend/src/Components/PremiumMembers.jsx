@@ -27,7 +27,7 @@ const PremiumMembers = () => {
   if (isError) return <p className="text-center mt-10 text-red-600">Failed to load premium members.</p>;
 
   return (
-    <section className="py-20">
+    <section id="featured-profiles" className="py-20 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <div>

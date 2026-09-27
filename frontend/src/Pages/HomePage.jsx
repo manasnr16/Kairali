@@ -14,10 +14,10 @@ const HomePage = () => {
     return (
         <div>
             <HeroSlider/>
+            <WelcomeSection></WelcomeSection>
             <OurServices/>
             <PremiumMembers/>
             <HowItWorks></HowItWorks>
-            <WelcomeSection></WelcomeSection>
             <TrustedSection></TrustedSection>
             <RecentCouplesSlider></RecentCouplesSlider>
             <CoupleTestimonials></CoupleTestimonials>

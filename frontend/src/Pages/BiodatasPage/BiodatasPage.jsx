@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../Axios Instance/axios';
 import BiodataCard from './BiodataCard';
 import Loader from '../../Components/Loader';
+import { KERALA_DISTRICTS, INDIA_STATES, GLOBAL_COUNTRIES } from '../../data/locationOptions';
 
 
 
@@ -13,6 +14,8 @@ const BiodatasPage = () => {
     const [tempFilters, setTempFilters] = useState({
         ageRange: [18, 60],
         biodataType: '',
+        region: '',
+        state: '',
         division: ''
     });
 
@@ -105,32 +108,75 @@ const BiodatasPage = () => {
                         className="w-full mb-4 border rounded p-2"
                     >
                         <option value="">All</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male">Groom</option>
+                        <option value="female">Bride</option>
                     </select>
 
-                    <label>District</label>
+                    <label>Location</label>
                     <select
-                        value={tempFilters.division}
-                        onChange={e => setTempFilters(f => ({ ...f, division: e.target.value }))}
-                        className="w-full mb-4 border rounded p-2"
+                        value={tempFilters.region}
+                        onChange={e => setTempFilters(f => ({ ...f, region: e.target.value, state: '', division: '' }))}
+                        className="w-full mb-2 border rounded p-2"
                     >
-                        <option value="">All Districts</option>
-                        <option value="thiruvananthapuram">Thiruvananthapuram</option>
-                        <option value="kollam">Kollam</option>
-                        <option value="pathanamthitta">Pathanamthitta</option>
-                        <option value="alappuzha">Alappuzha</option>
-                        <option value="kottayam">Kottayam</option>
-                        <option value="idukki">Idukki</option>
-                        <option value="ernakulam">Ernakulam</option>
-                        <option value="thrissur">Thrissur</option>
-                        <option value="palakkad">Palakkad</option>
-                        <option value="malappuram">Malappuram</option>
-                        <option value="kozhikode">Kozhikode</option>
-                        <option value="wayanad">Wayanad</option>
-                        <option value="kannur">Kannur</option>
-                        <option value="kasaragod">Kasaragod</option>
+                        <option value="">All Locations</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="india">India</option>
+                        <option value="global">Global</option>
                     </select>
+
+                    {tempFilters.region === 'kerala' && (
+                        <select
+                            value={tempFilters.division}
+                            onChange={e => setTempFilters(f => ({ ...f, division: e.target.value }))}
+                            className="w-full mb-4 border rounded p-2"
+                        >
+                            <option value="">All Districts</option>
+                            {KERALA_DISTRICTS.map(district => (
+                                <option key={district} value={district}>{district}</option>
+                            ))}
+                        </select>
+                    )}
+
+                    {tempFilters.region === 'india' && (
+                        <>
+                            <select
+                                value={tempFilters.state}
+                                onChange={e => setTempFilters(f => ({ ...f, state: e.target.value, division: '' }))}
+                                className="w-full mb-2 border rounded p-2"
+                            >
+                                <option value="">All States</option>
+                                {Object.keys(INDIA_STATES).map(state => (
+                                    <option key={state} value={state}>{state}</option>
+                                ))}
+                            </select>
+
+                            {tempFilters.state && (
+                                <select
+                                    value={tempFilters.division}
+                                    onChange={e => setTempFilters(f => ({ ...f, division: e.target.value }))}
+                                    className="w-full mb-4 border rounded p-2"
+                                >
+                                    <option value="">All Cities</option>
+                                    {INDIA_STATES[tempFilters.state].map(city => (
+                                        <option key={city} value={city}>{city}</option>
+                                    ))}
+                                </select>
+                            )}
+                        </>
+                    )}
+
+                    {tempFilters.region === 'global' && (
+                        <select
+                            value={tempFilters.division}
+                            onChange={e => setTempFilters(f => ({ ...f, division: e.target.value }))}
+                            className="w-full mb-4 border rounded p-2"
+                        >
+                            <option value="">All Countries</option>
+                            {GLOBAL_COUNTRIES.map(country => (
+                                <option key={country} value={country}>{country}</option>
+                            ))}
+                        </select>
+                    )}
 
                     <button
                         onClick={onApplyFilters}

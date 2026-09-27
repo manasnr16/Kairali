@@ -176,10 +176,13 @@ const LoginPage = () => {
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_80%_20%,white,transparent_35%)]" />
         <div className="relative z-10 text-white max-w-md text-center">
           <h1 className="subtitle-font text-3xl xl:text-4xl font-semibold mb-4">
-            Welcome Back to Kairali Match Makers
+            Welcome to Kairali Match Makers
           </h1>
-          <p className="text-white/80 text-sm xl:text-base">
+          <p className="text-white/80 text-sm xl:text-base mb-3">
             Sign in to continue your journey towards finding a meaningful life partner.
+          </p>
+          <p className="text-white/80 text-sm xl:text-base">
+            Marriage is more than finding a profile. It is about finding someone whose values, aspirations and family outlook complement your own. We aim to make that journey more personal, respectful and convenient.
           </p>
         </div>
       </div>
@@ -192,7 +195,7 @@ const LoginPage = () => {
           className="bg-white w-full max-w-md p-6 sm:p-8 rounded-xl shadow-lg"
         >
           <h2 className="text-2xl sm:text-3xl subtitle-font font-semibold mb-6 text-center text-maroon">
-            Welcome Back
+            Welcome
           </h2>
 
           {loginError && <p className="text-red-500 text-sm mb-4 text-center">{loginError}</p>}

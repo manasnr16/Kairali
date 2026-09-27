@@ -41,7 +41,7 @@ const HeroSlider = () => {
             KERALA'S MALAYALEE MATRIMONY
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold subtitle-font break-words">
-            Meet Your <span className="text-maroon">Life Partner</span>
+            Meet Your <span className="text-yellow-200">Life Partner</span>
           </h1>
           <p className="mt-2 text-sm w-10/12 mx-auto md:text-lg poppins">
             Discover meaningful matrimonial connections among Malayalees from Kerala, across India and around the world.
@@ -53,8 +53,8 @@ const HeroSlider = () => {
           <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 w-full">
             <select className="px-3 py-2 rounded text-black w-full">
               <option>I'm looking for</option>
-              <option>Male</option>
-              <option>Female</option>
+              <option>Groom</option>
+              <option>Bride</option>
             </select>
             <select className="px-3 py-2 rounded text-black w-full">
               <option>Age</option>
@@ -73,10 +73,8 @@ const HeroSlider = () => {
             <select className="px-3 py-2 rounded text-black w-full">
               <option>Location</option>
               <option>Kerala</option>
-              <option>Kochi</option>
-              <option>Thiruvananthapuram</option>
-              <option>Kozhikode</option>
-              <option>Thrissur</option>
+              <option>India</option>
+              <option>Global</option>
             </select>
             <Link to="/biodataspage">
               <button className="bg-maroon hover:bg-maroon-dark py-2 text-white font-semibold rounded w-full">
