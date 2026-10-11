@@ -27,7 +27,7 @@ import {
 const COMPLETENESS_FIELDS = [
   'profileImage', 'name', 'dob', 'height', 'weight', 'occupation',
   'fatherName', 'motherName', 'permanentDivision', 'presentDivision',
-  'mobile', 'expectedPartnerAge', 'expectedPartnerHeight',
+  'mobile', 'expectedPartnerAge',
 ];
 
 const DetailRow = ({ icon, label, value }) => (
@@ -206,8 +206,6 @@ const ViewBiodata = () => {
 
         <SectionCard title="Partner Preferences">
           <DetailRow icon={<FaBirthdayCake />} label="Preferred Age" value={biodata?.expectedPartnerAge} />
-          <DetailRow icon={<FaRulerVertical />} label="Preferred Height" value={biodata?.expectedPartnerHeight ? `${biodata.expectedPartnerHeight} ft` : null} />
-          <DetailRow icon={<FaWeight />} label="Preferred Weight" value={biodata?.expectedPartnerWeight ? `${biodata.expectedPartnerWeight} kg` : null} />
         </SectionCard>
 
         <SectionCard title="Contact Details">

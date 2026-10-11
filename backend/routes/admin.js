@@ -157,11 +157,13 @@ router.get("/admin/profiles/:id", async (req, res) => {
 // stored in the same collection and shape as user-submitted biodata, so it
 // shows up on the public site (GET /biodatas, /biodatabyid) exactly the same.
 const PROFILE_REQUIRED = [
-  "biodataType", "name", "profileImage", "mobile", "dob", "height", "weight",
+  "biodataType", "name", "mobile", "dob", "height", "weight",
   "age", "occupation", "race", "fatherName", "motherName", "permanentDivision",
-  "presentDivision", "expectedPartnerAge", "expectedPartnerHeight",
-  "expectedPartnerWeight", "email",
+  "presentDivision", "expectedPartnerAge", "email",
 ];
+// Keep in sync with IMAGE_RULES in frontend/src/data/biodataOptions.js.
+const PROFILE_IMAGE_MIN = 4;
+const PROFILE_IMAGE_MAX = 5;
 const PROFILE_NUMERIC = ["age", "expectedPartnerAge"];
 
 router.post("/admin/profiles", async (req, res) => {
@@ -195,6 +197,18 @@ router.post("/admin/profiles", async (req, res) => {
     return res.status(400).json({ message: "A valid contact email is required" });
   }
   data.email = data.email.toLowerCase();
+
+  const images = Array.isArray(body.images) ? body.images.map((u) => String(u).trim()) : [];
+  if (images.length < PROFILE_IMAGE_MIN || images.length > PROFILE_IMAGE_MAX) {
+    return res
+      .status(400)
+      .json({ message: `Between ${PROFILE_IMAGE_MIN} and ${PROFILE_IMAGE_MAX} images are required` });
+  }
+  if (images.some((u) => !/^https:\/\/\S+$/.test(u))) {
+    return res.status(400).json({ message: "Images must be https URLs" });
+  }
+  data.images = images;
+  data.profileImage = images[0];
 
   if (await Biodata.exists({ email: data.email })) {
     return res.status(409).json({ message: "A profile with this email already exists" });

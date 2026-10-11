@@ -7,6 +7,7 @@ const biodataSchema = new mongoose.Schema(
     biodataType: { type: String },
     name: { type: String },
     profileImage: { type: String },
+    images: { type: [String], default: [] },
     mobile: { type: String },
     dob: { type: String },
     age: { type: Number },
@@ -19,8 +20,6 @@ const biodataSchema = new mongoose.Schema(
     permanentDivision: { type: String },
     presentDivision: { type: String },
     expectedPartnerAge: { type: Number },
-    expectedPartnerHeight: { type: String },
-    expectedPartnerWeight: { type: String },
 
     // Moderation — controlled exclusively via /admin routes.
     // "active": visible everywhere (default). "archived": hidden from public

@@ -100,7 +100,7 @@ const BiodataDetails = () => {
               Age: {biodata.age}
             </div>
             <div className="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm">
-              Height: {biodata.height}
+              Height: {biodata.height} ft
             </div>
             <div className="bg-maroon/10 text-maroon px-3 py-1 rounded-full text-sm">
               Profession: {biodata.occupation}
@@ -115,9 +115,7 @@ const BiodataDetails = () => {
               <strong>{biodata.race}</strong> background and live in{" "}
               <strong>{biodata.presentDivision}</strong>. I'm looking for a
               partner aged around{" "}
-              <strong>{biodata.expectedPartnerAge}</strong> with height around{" "}
-              <strong>{biodata.expectedPartnerHeight}</strong> and weight around{" "}
-              <strong>{biodata.expectedPartnerWeight}kg</strong>.
+              <strong>{biodata.expectedPartnerAge}</strong>.
             </p>
           </div>
 
@@ -126,14 +124,15 @@ const BiodataDetails = () => {
             <h3 className="font-semibold text-lg mb-2 text-gray-700">
               Photo Gallery
             </h3>
-            <div className="flex gap-3">
-              {[...Array(3)].map((_, i) => (
-                <img
-                  key={i}
-                  src={biodata.profileImage}
-                  className="w-20 h-20 rounded-md object-cover"
-                  alt="Gallery"
-                />
+            <div className="flex flex-wrap gap-3">
+              {(biodata.images?.length ? biodata.images : [biodata.profileImage]).map((src, i) => (
+                <a key={src + i} href={src} target="_blank" rel="noreferrer">
+                  <img
+                    src={src}
+                    className="w-20 h-20 rounded-md object-cover"
+                    alt={`Gallery ${i + 1}`}
+                  />
+                </a>
               ))}
             </div>
           </div>
@@ -165,7 +164,7 @@ const BiodataDetails = () => {
             <p><strong>Father's Name:</strong> {biodata.fatherName}</p>
             <p><strong>Mother's Name:</strong> {biodata.motherName}</p>
             <p><strong>Date of Birth:</strong> {biodata.dob}</p>
-            <p><strong>Weight:</strong> {biodata.weight}kg</p>
+            <p><strong>Weight:</strong> {biodata.weight} kg</p>
             <p><strong>Permanent District:</strong> {biodata.permanentDivision}</p>
             <p><strong >Bio ID:</strong> #{biodata.bioId}</p>
           </div>

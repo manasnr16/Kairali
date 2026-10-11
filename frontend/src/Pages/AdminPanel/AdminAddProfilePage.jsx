@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import adminAxios from "../../Axios Instance/adminAxios";
 import { AuthContext } from "../../Contex/AuthProvider";
-import { DIVISIONS, HEIGHTS, WEIGHTS, OCCUPATIONS, RACES } from "../../data/biodataOptions";
+import ProfileImagesField from "../../Components/ProfileImagesField";
+import { DIVISIONS, HEIGHT_RANGES, WEIGHT_RANGES, OCCUPATIONS, RACES, IMAGE_RULES } from "../../data/biodataOptions";
 
 const inputClass = (hasError) =>
   `w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
@@ -30,15 +31,18 @@ const AdminAddProfilePage = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { images: [] } });
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = await uploadImage(file);
-    if (url) setValue("profileImage", url, { shouldValidate: true });
-  };
+  const images = watch("images") || [];
+
+  useEffect(() => {
+    register("images", {
+      validate: (value) =>
+        (value?.length || 0) >= IMAGE_RULES.min || `Upload at least ${IMAGE_RULES.min} images.`,
+    });
+  }, [register]);
 
   const onSubmit = async (data) => {
     setSubmitting(true);
@@ -108,18 +112,16 @@ const AdminAddProfilePage = () => {
           <input {...register("name", { required: true })} className={inputClass(errors.name)} placeholder="Full name" />
         </Field>
 
-        <Field label="Upload Profile Image *" error={errors.profileImage} message="Profile image is required.">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="w-full rounded border border-gray-300 cursor-pointer hover:border-gold transition"
-          />
-          {uploading && <p className="text-blue-500 text-xs mt-1">Uploading...</p>}
-          <input
-            {...register("profileImage", { required: true })}
-            className={`${inputClass(false)} mt-2 text-sm`}
-            placeholder="…or paste an image URL"
+        <Field
+          label={`Profile Images (${IMAGE_RULES.min}-${IMAGE_RULES.max}) *`}
+          error={errors.images}
+          message={errors.images?.message}
+        >
+          <ProfileImagesField
+            images={images}
+            uploadImage={uploadImage}
+            uploading={uploading}
+            onChange={(urls) => setValue("images", urls, { shouldValidate: true })}
           />
         </Field>
 
@@ -135,12 +137,12 @@ const AdminAddProfilePage = () => {
           <input type="date" {...register("dob", { required: true })} className={inputClass(errors.dob)} />
         </Field>
 
-        <Field label="Height *" error={errors.height}>
-          {select("height", "Select height", HEIGHTS)}
+        <Field label="Height (ft) *" error={errors.height}>
+          {select("height", "Select height range", HEIGHT_RANGES)}
         </Field>
 
         <Field label="Weight (kg) *" error={errors.weight}>
-          {select("weight", "Select weight", WEIGHTS)}
+          {select("weight", "Select weight range (kg)", WEIGHT_RANGES)}
         </Field>
 
         <Field label="Age *" error={errors.age} message="Please enter a valid age (18+).">
@@ -191,14 +193,6 @@ const AdminAddProfilePage = () => {
             className={inputClass(errors.expectedPartnerAge)}
             placeholder="Expected age"
           />
-        </Field>
-
-        <Field label="Preferred Height *" error={errors.expectedPartnerHeight}>
-          {select("expectedPartnerHeight", "Select height", HEIGHTS)}
-        </Field>
-
-        <Field label="Preferred Weight *" error={errors.expectedPartnerWeight}>
-          {select("expectedPartnerWeight", "Select weight", WEIGHTS)}
         </Field>
 
         <Field

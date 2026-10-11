@@ -5,7 +5,8 @@ import axiosInstance from '../../../Axios Instance/axios';
 import Swal from 'sweetalert2';
 import { useDashboardStats } from '../../../Utils/Utils';
 
-import { DIVISIONS as divisions, HEIGHTS, WEIGHTS, OCCUPATIONS, RACES } from '../../../data/biodataOptions';
+import ProfileImagesField from '../../../Components/ProfileImagesField';
+import { DIVISIONS as divisions, HEIGHT_RANGES, WEIGHT_RANGES, OCCUPATIONS, RACES, IMAGE_RULES } from '../../../data/biodataOptions';
 
 const EditBiodata = () => {
   const { uploadImage, uploading, user, biodata, refetchBiodata } = useContext(AuthContext);
@@ -16,8 +17,23 @@ const EditBiodata = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { images: [] } });
+
+  const images = watch('images') || [];
+  const heightValue = watch('height');
+  const weightValue = watch('weight');
+  // Profiles created before the gallery existed only have one photo; let them
+  // keep editing without being forced to add more.
+  const minImages = isEditing && (biodata?.images?.length || 0) < IMAGE_RULES.min ? 1 : IMAGE_RULES.min;
+
+  useEffect(() => {
+    register('images', {
+      validate: (value) =>
+        (value?.length || 0) >= minImages || `Upload at least ${minImages} image${minImages === 1 ? '' : 's'}.`,
+    });
+  }, [register, minImages]);
 
   useEffect(() => {
     const fetchBiodata = async () => {
@@ -27,10 +43,12 @@ const EditBiodata = () => {
           const bio = res.data.data;
           setIsEditing(true);
           Object.keys(bio).forEach((key) => {
-            if (key !== '_id' && key !== 'email') {
+            if (key !== '_id' && key !== 'email' && key !== 'images') {
               setValue(key, bio[key]);
             }
           });
+          const gallery = bio.images?.length ? bio.images : bio.profileImage ? [bio.profileImage] : [];
+          setValue('images', gallery);
         }
       } catch {
         setIsEditing(false);
@@ -40,11 +58,9 @@ const EditBiodata = () => {
     if (user?.email) fetchBiodata();
   }, [user, setValue]);
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = await uploadImage(file);
-    if (url) setValue('profileImage', url);
+  const handleImagesChange = (urls) => {
+    setValue('images', urls, { shouldValidate: true });
+    setValue('profileImage', urls[0] || '');
   };
 
   const onSubmit = async (data) => {
@@ -148,34 +164,32 @@ const EditBiodata = () => {
           {errors.name && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
         </div>
 
-        {/* Image & Mobile */}
-        <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Upload Profile Image *</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="w-full rounded border border-gray-300 cursor-pointer hover:border-gold transition"
-            />
-            {uploading && <p className="text-blue-500 text-xs mt-1">Uploading...</p>}
-            <input type="hidden" {...register('profileImage', { required: true })} />
-            {errors.profileImage && (
-              <p className="text-red-500 text-xs mt-1">Profile image is required.</p>
-            )}
-          </div>
+        {/* Images */}
+        <div className="md:col-span-2">
+          <label className="block mb-2 font-medium text-gray-700">
+            Profile Images ({minImages === IMAGE_RULES.max ? IMAGE_RULES.max : `${minImages}-${IMAGE_RULES.max}`}) *
+          </label>
+          <ProfileImagesField
+            images={images}
+            uploadImage={uploadImage}
+            uploading={uploading}
+            minImages={minImages}
+            onChange={handleImagesChange}
+          />
+          {errors.images && <p className="text-red-500 text-xs mt-1">{errors.images.message}</p>}
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Mobile Number *</label>
-            <input
-              {...register('mobile', { required: true })}
-              className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
-                errors.mobile ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="e.g. +8801XXXXXXXXX"
-            />
-            {errors.mobile && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
-          </div>
+        {/* Mobile */}
+        <div>
+          <label className="block mb-2 font-medium text-gray-700">Mobile Number *</label>
+          <input
+            {...register('mobile', { required: true })}
+            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
+              errors.mobile ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="e.g. +91XXXXXXXXXX"
+          />
+          {errors.mobile && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
         </div>
 
         {/* Date of Birth */}
@@ -193,15 +207,18 @@ const EditBiodata = () => {
 
         {/* Height */}
         <div>
-          <label className="block mb-2 font-medium text-gray-700">Height *</label>
+          <label className="block mb-2 font-medium text-gray-700">Height (ft) *</label>
           <select
             {...register('height', { required: true })}
             className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
               errors.height ? 'border-red-500' : 'border-gray-300'
             }`}
           >
-            <option value="">Select height</option>
-            {HEIGHTS.map((h) => (
+            <option value="">Select height range</option>
+            {heightValue && !HEIGHT_RANGES.includes(heightValue) && (
+              <option value={heightValue}>{heightValue} (current)</option>
+            )}
+            {HEIGHT_RANGES.map((h) => (
               <option key={h} value={h}>{h}</option>
             ))}
           </select>
@@ -217,8 +234,11 @@ const EditBiodata = () => {
               errors.weight ? 'border-red-500' : 'border-gray-300'
             }`}
           >
-            <option value="">Select weight</option>
-            {WEIGHTS.map((w) => (
+            <option value="">Select weight range</option>
+            {weightValue && !WEIGHT_RANGES.includes(weightValue) && (
+              <option value={weightValue}>{weightValue} (current)</option>
+            )}
+            {WEIGHT_RANGES.map((w) => (
               <option key={w} value={w}>{w}</option>
             ))}
           </select>
@@ -359,44 +379,6 @@ const EditBiodata = () => {
             placeholder="Expected age"
           />
           {errors.expectedPartnerAge && (
-            <p className="text-red-500 text-xs mt-1">This field is required.</p>
-          )}
-        </div>
-
-        {/* Expected Partner Height */}
-        <div>
-          <label className="block mb-2 font-medium text-gray-700">Preferred Height *</label>
-          <select
-            {...register('expectedPartnerHeight', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
-              errors.expectedPartnerHeight ? 'border-red-500' : 'border-gray-300'
-            }`}
-          >
-            <option value="">Select height</option>
-            {HEIGHTS.map((h) => (
-              <option key={h} value={h}>{h}</option>
-            ))}
-          </select>
-          {errors.expectedPartnerHeight && (
-            <p className="text-red-500 text-xs mt-1">This field is required.</p>
-          )}
-        </div>
-
-        {/* Expected Partner Weight */}
-        <div>
-          <label className="block mb-2 font-medium text-gray-700">Preferred Weight *</label>
-          <select
-            {...register('expectedPartnerWeight', { required: true })}
-            className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-gold ${
-              errors.expectedPartnerWeight ? 'border-red-500' : 'border-gray-300'
-            }`}
-          >
-            <option value="">Select weight</option>
-            {WEIGHTS.map((w) => (
-              <option key={w} value={w}>{w}</option>
-            ))}
-          </select>
-          {errors.expectedPartnerWeight && (
             <p className="text-red-500 text-xs mt-1">This field is required.</p>
           )}
         </div>
