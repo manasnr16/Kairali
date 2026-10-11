@@ -21,7 +21,37 @@ export const WEIGHT_RANGES = [
   'Above 100',
 ];
 
-export const OCCUPATIONS = ['Student', 'Engineer', 'Doctor'];
+export const OCCUPATIONS = [
+  'Student',
+  'Engineer',
+  'Software Professional',
+  'Doctor',
+  'Nurse',
+  'Pharmacist',
+  'Teacher / Professor',
+  'Lawyer',
+  'Chartered Accountant',
+  'Accountant',
+  'Banking Professional',
+  'Government Employee',
+  'Police / Defence Services',
+  'Architect',
+  'Business / Entrepreneur',
+  'Self Employed',
+  'Farmer / Agriculture',
+  'Mechanic / Technician',
+  'Driver',
+  'Hospitality / Hotel Management',
+  'Marketing / Sales',
+  'Designer / Creative',
+  'Journalist / Media',
+  'Researcher / Scientist',
+  'Merchant Navy / Seafarer',
+  'Gulf / Overseas Employee',
+  'Homemaker',
+  'Not Working',
+  'Other',
+];
 export const RACES = ['Fair', 'Medium', 'Dark'];
 
 // Keep in sync with backend/routes/admin.js (PROFILE_IMAGE_MIN / _MAX).
