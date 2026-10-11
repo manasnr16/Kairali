@@ -5,11 +5,7 @@ import axiosInstance from '../../../Axios Instance/axios';
 import Swal from 'sweetalert2';
 import { useDashboardStats } from '../../../Utils/Utils';
 
-const divisions = [
-  'Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam',
-  'Idukki', 'Ernakulam', 'Thrissur', 'Palakkad', 'Malappuram',
-  'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod',
-];
+import { DIVISIONS as divisions, HEIGHTS, WEIGHTS, OCCUPATIONS, RACES } from '../../../data/biodataOptions';
 
 const EditBiodata = () => {
   const { uploadImage, uploading, user, biodata, refetchBiodata } = useContext(AuthContext);
@@ -205,9 +201,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select height</option>
-            <option value="5'0&quot;">5'0"</option>
-            <option value="5'5&quot;">5'5"</option>
-            <option value="6'0&quot;">6'0"</option>
+            {HEIGHTS.map((h) => (
+              <option key={h} value={h}>{h}</option>
+            ))}
           </select>
           {errors.height && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
         </div>
@@ -222,9 +218,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select weight</option>
-            <option value="50">50</option>
-            <option value="60">60</option>
-            <option value="70">70</option>
+            {WEIGHTS.map((w) => (
+              <option key={w} value={w}>{w}</option>
+            ))}
           </select>
           {errors.weight && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
         </div>
@@ -253,9 +249,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select occupation</option>
-            <option value="Student">Student</option>
-            <option value="Engineer">Engineer</option>
-            <option value="Doctor">Doctor</option>
+            {OCCUPATIONS.map((o) => (
+              <option key={o} value={o}>{o}</option>
+            ))}
           </select>
           {errors.occupation && (
             <p className="text-red-500 text-xs mt-1">This field is required.</p>
@@ -272,9 +268,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select skin color</option>
-            <option value="Fair">Fair</option>
-            <option value="Medium">Medium</option>
-            <option value="Dark">Dark</option>
+            {RACES.map((r) => (
+              <option key={r} value={r}>{r}</option>
+            ))}
           </select>
           {errors.race && <p className="text-red-500 text-xs mt-1">This field is required.</p>}
         </div>
@@ -377,9 +373,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select height</option>
-            <option value="5'0&quot;">5'0"</option>
-            <option value="5'5&quot;">5'5"</option>
-            <option value="6'0&quot;">6'0"</option>
+            {HEIGHTS.map((h) => (
+              <option key={h} value={h}>{h}</option>
+            ))}
           </select>
           {errors.expectedPartnerHeight && (
             <p className="text-red-500 text-xs mt-1">This field is required.</p>
@@ -396,9 +392,9 @@ const EditBiodata = () => {
             }`}
           >
             <option value="">Select weight</option>
-            <option value="50">50</option>
-            <option value="60">60</option>
-            <option value="70">70</option>
+            {WEIGHTS.map((w) => (
+              <option key={w} value={w}>{w}</option>
+            ))}
           </select>
           {errors.expectedPartnerWeight && (
             <p className="text-red-500 text-xs mt-1">This field is required.</p>

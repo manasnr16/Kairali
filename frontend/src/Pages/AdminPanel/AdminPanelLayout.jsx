@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router";
-import { FaChartPie, FaUsers, FaSignOutAlt, FaBars, FaTimes, FaUserShield } from "react-icons/fa";
+import { FaChartPie, FaUsers, FaUserPlus, FaSignOutAlt, FaBars, FaTimes, FaUserShield } from "react-icons/fa";
 import { AdminAuthContext } from "../../Contex/AdminAuthContext";
 
 const navItems = [
   { to: "/admin/dashboard", label: "Dashboard", icon: FaChartPie, end: true },
-  { to: "/admin/dashboard/profiles", label: "Profiles", icon: FaUsers },
+  { to: "/admin/dashboard/profiles", label: "Profiles", icon: FaUsers, end: true },
+  { to: "/admin/dashboard/profiles/new", label: "Add Profile", icon: FaUserPlus },
 ];
 
 const AdminPanelLayout = () => {

@@ -41,6 +41,7 @@ import AdminLoginPage from "../Pages/AdminPanel/AdminLoginPage";
 import AdminPanelLayout from "../Pages/AdminPanel/AdminPanelLayout";
 import AdminStatsPage from "../Pages/AdminPanel/AdminStatsPage";
 import AdminProfilesPage from "../Pages/AdminPanel/AdminProfilesPage";
+import AdminAddProfilePage from "../Pages/AdminPanel/AdminAddProfilePage";
 
 
 
@@ -196,6 +197,10 @@ export const router = createBrowserRouter([
           {
             path: "profiles",
             element: <AdminProfilesPage />,
+          },
+          {
+            path: "profiles/new",
+            element: <AdminAddProfilePage />,
           },
         ],
       },

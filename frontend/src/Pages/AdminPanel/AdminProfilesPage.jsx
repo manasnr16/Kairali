@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import { FaCrown, FaArchive, FaBan, FaUndo, FaSearch } from "react-icons/fa";
+import { Link } from "react-router";
+import { FaCrown, FaArchive, FaBan, FaUndo, FaSearch, FaUserPlus } from "react-icons/fa";
 import adminAxios from "../../Axios Instance/adminAxios";
 
 const emptyFilters = {
@@ -93,7 +94,15 @@ const AdminProfilesPage = () => {
 
   return (
     <div>
-      <h1 className="text-2xl md:text-3xl font-bold text-ink mb-6">Manage Profiles</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-ink">Manage Profiles</h1>
+        <Link
+          to="/admin/dashboard/profiles/new"
+          className="inline-flex items-center gap-2 bg-maroon hover:bg-maroon-dark text-white text-sm font-medium px-4 py-2 rounded-lg"
+        >
+          <FaUserPlus /> Add Profile
+        </Link>
+      </div>
 
       <form onSubmit={applyFilters} className="bg-white rounded-xl shadow-sm p-4 mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="relative lg:col-span-2">

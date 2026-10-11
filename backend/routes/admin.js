@@ -153,6 +153,70 @@ router.get("/admin/profiles/:id", async (req, res) => {
   res.json({ ...biodata, isPremium: !!premium, planType: premium?.planType || null });
 });
 
+// POST /admin/profiles -> admin creates a profile on behalf of a member. It is
+// stored in the same collection and shape as user-submitted biodata, so it
+// shows up on the public site (GET /biodatas, /biodatabyid) exactly the same.
+const PROFILE_REQUIRED = [
+  "biodataType", "name", "profileImage", "mobile", "dob", "height", "weight",
+  "age", "occupation", "race", "fatherName", "motherName", "permanentDivision",
+  "presentDivision", "expectedPartnerAge", "expectedPartnerHeight",
+  "expectedPartnerWeight", "email",
+];
+const PROFILE_NUMERIC = ["age", "expectedPartnerAge"];
+
+router.post("/admin/profiles", async (req, res) => {
+  const body = req.body || {};
+
+  const missing = PROFILE_REQUIRED.filter(
+    (field) => body[field] === undefined || body[field] === null || String(body[field]).trim() === ""
+  );
+  if (missing.length) {
+    return res.status(400).json({ message: `Missing required fields: ${missing.join(", ")}` });
+  }
+
+  const data = {};
+  PROFILE_REQUIRED.forEach((field) => {
+    data[field] = typeof body[field] === "string" ? body[field].trim() : body[field];
+  });
+  PROFILE_NUMERIC.forEach((field) => {
+    data[field] = Number(data[field]);
+  });
+
+  if (!["Male", "Female"].includes(data.biodataType)) {
+    return res.status(400).json({ message: "biodataType must be Male or Female" });
+  }
+  if (PROFILE_NUMERIC.some((field) => !Number.isFinite(data[field]))) {
+    return res.status(400).json({ message: "age and expectedPartnerAge must be numbers" });
+  }
+  if (data.age < 18) {
+    return res.status(400).json({ message: "age must be 18 or above" });
+  }
+  if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+    return res.status(400).json({ message: "A valid contact email is required" });
+  }
+  data.email = data.email.toLowerCase();
+
+  if (await Biodata.exists({ email: data.email })) {
+    return res.status(409).json({ message: "A profile with this email already exists" });
+  }
+
+  // bioId is the public profile number; take max+1 (not count+1, which
+  // collides after any deletion) and retry if two creates race.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const last = await Biodata.findOne().sort({ bioId: -1 }).select("bioId").lean();
+    try {
+      const biodata = await Biodata.create({
+        ...data,
+        bioId: (last?.bioId || 0) + 1,
+        createdByAdmin: req.admin.sub,
+      });
+      return res.status(201).json({ success: true, data: biodata });
+    } catch (err) {
+      if (err.code !== 11000 || attempt === 2) throw err;
+    }
+  }
+});
+
 // PATCH /admin/profiles/:id/status -> archive / blacklist / reactivate a profile.
 // This is the single source of truth the public site reads from (GET /biodatas
 // and GET /biodatabyid both filter on `status`), so the change is instant.
